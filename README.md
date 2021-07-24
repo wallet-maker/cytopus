@@ -1,4 +1,4 @@
-# cytopus
+# Cytopus
 
 ## A language for single cell omics biology
 
