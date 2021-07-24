@@ -8,17 +8,17 @@
 
 currently version 1.1 of SPADE gene sets (human scRNAseq only) available
 
-all_cells : all cells
-leukocytes : only valid for leukocytes
-M : only valid for myeloid cells
-TNK : only valid for T cells, innate like lymphoid cells (including NK cells)
-B : only valid for B cells and plasma cells
+all_cells - all cells
+leukocytes - only valid for leukocytes
+M - only valid for myeloid cells
+TNK - only valid for T cells, innate like lymphoid cells (including NK cells)
+B - only valid for B cells and plasma cells
 
 
 ## gene sets correspond to one of the following annotations:
 
-cellular_process : any process happening within a single cell
-cellular_identity : characteristics required to establish a cellular identity
+cellular_process - any process happening within a single cell
+cellular_identity - characteristics required to establish a cellular identity
 
 ## please contribute and submit gene sets here
 
