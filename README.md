@@ -2,11 +2,11 @@
 
 ## A language for single cell omics biology
 
-currently version 1.1 of SPADE gene sets (human scRNAseq only) available
-
 ![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/cytopus_v1.1_stable_graph.png)
 
 ## gene sets correspond to one of the following cell types:
+
+currently version 1.1 of SPADE gene sets (human scRNAseq only) available
 
 all_cells : all cells
 leukocytes : only valid for leukocytes
