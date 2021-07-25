@@ -40,4 +40,4 @@ cellular_identity - characteristics required to establish a cellular identity
 
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
 
-For the time being gene sets will be reviewed by 2 (computational) biologists and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. I understand that for many processes several names exist, in this case we are happy to introduce these aliases to the database. 
+For the time being gene sets will be reviewed by 2 (computational) biologists and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. I understand that for many processes several names exist, in this case I am happy to introduce these aliases to the database. 
