@@ -1,13 +1,14 @@
 import pandas as pd
 import numpy as np
 import networkx as nx
-from pyvis.network import Network
+#from pyvis.network import Network
 import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import graphviz_layout
 import pickle
+from os.path import dirname
 
 class KnowledgeBase:
-    def __init__(self, graph_path):
+    def __init__(self, graph_path=dirname(__file__)+'/data/SPECTRA_knowledge_base_1.2.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
