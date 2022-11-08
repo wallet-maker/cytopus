@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cytopus"
+version = "1.2"
+authors = [
+  { name="Thomas Walle", email="t.walle@dkfz.de" },
+]
+description = "A Knowledge Base for Single Cell Biology"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/wallet-maker/cytopus"
+"Bug Tracker" = "https://github.com/wallet-maker/cytopus/issues"
