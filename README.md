@@ -10,9 +10,9 @@ currently version 1.2 (stable)
 
 Package to query our single cell genomics KnowledgeBase.
 
-KnowledgeBase is provided in graph format based on the networkx package. Central to the KnowledgeBase is a cell type hierarchy and **cellular processess** which correspond to these cell types. Cell types are supported by gene sets indicative of their **cellular identities**. 
+The KnowledgeBase is provided in graph format based on the networkx package. Central to the KnowledgeBase is a cell type hierarchy and **cellular_processess** which correspond to the cell types in this hierarchy. Cell types are supported by gene sets indicative of their **cellular identities**. Moreover, the KnowledgeBase contains metadata about the gene sets such as author ship, the gene set topic etc.. 
 
-The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the **Soectra** package https://github.com/dpeerlab/spectra: 
+The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the **Spectra** package https://github.com/dpeerlab/spectra: 
 
 
 ## Installation:
@@ -25,7 +25,7 @@ cd cytopus
 pip install .
 ```
 
-**dependencies:**
+dependencies:
 "pandas>1.3"
 "numpy>1.2"
 "networkx>2.7"
@@ -46,11 +46,11 @@ G = cp.kb.KnowledgeBase(file_path)
 ```
 Access data in KnowledgeBase:
 ```
-#list of all processes in KnowledgeBase
+#list of all cell types in KnowledgeBase
 G.celltypes
 #dictionary of all cellular processes in KnowledgeBase as a dictionary {'process_1':['gene_a','gene_e','gene_y',...],'process_2':['gene_b','gene_u',...],...}
 G.processes
-#dictionary of all cellular identities in KnowledgeBase as a dictionary {'process_1':['gene_j','gene_k','gene_z',...],'identity_2':['gene_y','gene_p',...],...}
+#dictionary of all cellular identities in KnowledgeBase as a dictionary {'identity_1':['gene_j','gene_k','gene_z',...],'identity_2':['gene_y','gene_p',...],...}
 G.identities
 #dictionary with gene set properties (for cellular processes or identities)
 G.graph.nodes['gene_set_name']
@@ -61,27 +61,39 @@ Plot the cell type hierarchy stored in the KnowledgeBase as a directed graph wit
 G.plot_celltypes()
 ```
 
-Prepare a nested dictionary assigning cell types to their cellular processes and cellular processes to their corresponding genes. This dictionary can be used as an input for Spectra.
-```
-#First, select the cell types which you want to retrieve gene sets for. These cell types can be selected from the cell type hierarchy (see .plot_celltypes() method above)
-celltype_of_interest = ['M','T','B','epi']
 
-#Second, select the cell types which you want merge gene sets and set them as global gene sets for the Spectra package. These gene sets should be valid for all cell types in the data. 
+![Image of Cell type hierarchy](https://github.com/wallet-maker/cytopus/blob/main/img/celltype_hierarchy_1.2.png)
+
+
+
+Prepare a nested dictionary assigning cell types to their cellular processes and cellular processes to their corresponding genes. This dictionary can be used as an input for Spectra.
+
+First, select the cell types which you want to retrieve gene sets for. 
+These cell types can be selected from the cell type hierarchy (see .plot_celltypes() method above)
+```
+celltype_of_interest = ['M','T','B','epi']
+```
+
+Second, select the cell types which you want merge gene sets and set them as global gene sets for the Spectra package. These gene sets should be valid for all cell types in the data. 
+```
 ##e.g. if you are working with different human cells
 global_celltypes = ['all-cells']
 ##e.g. if you are working with human leukocytes
 global_celltypes = ['all-cells','leukocyte']
 ##e.g. if you are working with B cells
 global_celltypes = ['all-cells','leukocyte','B']
-
-#Third retrieve dictionary of format {celltype_a:{process_a:[gene_a,gene_b,...],...},...}.
-#Decide whether you want to merge gene sets for all children or all parents (unusual) of the selected cell types.
-G.get_celltype_processes(celltype_of_interest,global_celltypes = global_celltypes,get_children=True,get_parents =False)
-
-#Fourth, dictionary will be stored in the KnowledgeBase
-G.celltype_process_dict
 ```
 
+Third retrieve dictionary of format {celltype_a:{process_a:[gene_a,gene_b,...],...},...}.
+Decide whether you want to merge gene sets for all children or all parents (unusual) of the selected cell types.
+```
+G.get_celltype_processes(celltype_of_interest,global_celltypes = global_celltypes,get_children=True,get_parents =False)
+```
+
+Fourth, dictionary will be stored in the KnowledgeBase
+```
+G.celltype_process_dict
+```
 
 A full tutorial can be found under https://github.com/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries.ipynb
 
