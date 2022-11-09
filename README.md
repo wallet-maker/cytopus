@@ -19,7 +19,7 @@ The KnowledgeBase can be queried to retrieve gene sets for specific cell types a
 
 install from source:
 
-``
+```
 git clone https://github.com/wallet-maker/cytopus.git
 cd cytopus
 pip install .
