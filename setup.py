@@ -8,5 +8,5 @@ setup(
         "pandas>1.3",
         "numpy>1.2",
         "networkx>2.7",
-        "matplotlib-base>3.4"]        
+        "matplotlib>3.4"]        
 )
