@@ -101,4 +101,4 @@ A full tutorial can be found under https://github.com/wallet-maker/cytopus/blob/
 
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
 
-All submissions will be reviewed by 2 (computational) biologists and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets added to the KnowledgeBase.
+All submissions will be reviewed by 2 (computational) biologists and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets which pass review and are added to the KnowledgeBase.
