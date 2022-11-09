@@ -14,6 +14,7 @@ The KnowledgeBase is provided in graph format based on the networkx package. Cen
 
 The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the **Spectra** package https://github.com/dpeerlab/spectra: 
 
+Please cite [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
 ## Installation:
 
