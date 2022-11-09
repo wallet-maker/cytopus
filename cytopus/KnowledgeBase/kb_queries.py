@@ -8,7 +8,7 @@ import pickle
 from os.path import dirname
 
 class KnowledgeBase:
-    def __init__(self, graph_path=dirname(__file__)+'/data/SPECTRA_knowledge_base_1.2.txt'):
+    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.2.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
