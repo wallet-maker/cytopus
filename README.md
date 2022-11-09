@@ -17,6 +17,10 @@ The KnowledgeBase can be queried to retrieve gene sets for specific cell types a
 
 ## Installation:
 
+First, install pygraphviz
+
+
+
 install from source:
 
 ```
@@ -34,6 +38,9 @@ dependencies:
 ## Tutorial
 
 Retrieve default KnowledgeBase (human only):
+```
+conda install --channel conda-forge pygraphviz
+```
 
 ```
 import cytopus as cp
