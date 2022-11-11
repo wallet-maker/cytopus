@@ -3,7 +3,6 @@ import numpy as np
 import networkx as nx
 #from pyvis.network import Network
 import matplotlib.pyplot as plt
-from networkx.drawing.nx_agraph import graphviz_layout
 import pickle
 from os.path import dirname
 
@@ -259,6 +258,11 @@ class KnowledgeBase:
         
     def plot_celltypes(self, figure_size = [30,30], node_size = 1000, edge_width= 1, arrow_size=20, 
                        edge_color= 'k', node_color='#8decf5', label_size = 20):
+        try:
+            from networkx.drawing.nx_agraph import graphviz_layout
+        except ModuleNotFoundError:
+            print('please install graphviz')
+            pass
         node_list_plot = self.filter_nodes(attribute_name='class', attributes = ['cell_type'])
 
         def filter_node(n1):
@@ -279,4 +283,34 @@ class KnowledgeBase:
                             min_source_margin=0, min_target_margin=0)
         labels = nx.draw_networkx_labels(view,pos=pos,font_size=label_size)
         print('all celltypes in knowledge base:',list(labels.keys()))
+    def plot_graph_interactive(self, attributes=['cell_type','cellular_process'],colors= ['red','blue'], save_path = 'graph.html'):
+        try:
+            from pyvis.network import Network
+        except ModuleNotFoundError:
+            print('please install pyvis')
+            pass          
+        
+        if len(attributes)!=len(colors):
+            print('attributes and colors have to be same length')
+            break
+        if len(set(attributes))!=len(attributes):
+            print('attributes have to be unique')
+            break
+            
+        net = Network(notebook=True)
+        #cell types
+        node_list_plot = filter_nodes(self.graph, attribute_name='class', attributes = attributes)
+        def filter_node(n1):
+                return n1 in node_list_plot
+        view = nx.subgraph_view(self.graph, filter_node=filter_node)
+        net.from_nx(view)
+
+        for i in net.nodes:
+            index_range = list(range(len(nodes))
+            for v in index_range:
+                             if i['class'] == atributes[v]:
+                               i['color']= colors[v]
+               
+        #show
+        net.show(save_path)
          

@@ -16,12 +16,7 @@ The KnowledgeBase can be queried to retrieve gene sets for specific cell types a
 
 Please cite [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
-## Installation:
-
-First, install pygraphviz
-```
-conda install --channel conda-forge pygraphviz
-```
+## Installation
 
 install from source:
 
@@ -36,6 +31,18 @@ dependencies:
 "numpy>1.2"
 "networkx>2.7"
 "matplotlib>3.4"
+
+Some plotting functions require pygraphviz or pyvis. Install either or both:
+
+pygraphviz using conda:
+```
+conda install --channel conda-forge pygraphviz
+```
+
+pyvis using pip
+```
+pip install pyvis
+```
 
 ## Tutorial
 
