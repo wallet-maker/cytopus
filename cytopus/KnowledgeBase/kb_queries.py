@@ -3,7 +3,6 @@ import numpy as np
 import networkx as nx
 #from pyvis.network import Network
 import matplotlib.pyplot as plt
-from networkx.drawing.nx_agraph import graphviz_layout
 import pickle
 from os.path import dirname
 
@@ -98,7 +97,7 @@ class KnowledgeBase:
                 gene_set_dict[i[0]]= [i[1]]#
         return gene_set_dict
     
-    def get_celltype_processes(self,celltypes,global_celltypes=None,get_parents =True,get_children =True):
+    def get_celltype_processes(self,celltypes,global_celltypes=None,get_parents =True, get_children =True, parent_depth=1, child_depth= None, fill_missing=True,parent_depth_dict=None, child_depth_dict=None):
         '''
         get gene sets for specific cell types
         self: KnowledgeBase object (networkx)
@@ -106,9 +105,14 @@ class KnowledgeBase:
         global_celltypes: list of celltypes to set as 'global' for Spectra
         get_parent: also retrieve gene sets for the parents of the cell types in celltypes
         get_children: also retrieve gene sets for the parents of the cell types in celltypes
+        fill_missing: add an empty dictionary for cell types not found in KnowledgeBase   
+        parent_depth: steps from cell type to go up the hierarchie to retrieve gene sets linked to parents (e.g. 2 would be up to grandparents)
+        parent_depth_dict: you can also set the depth for specific celltype with a dictionary {celltype1:depth1,celltype2:depth2}
+        child_depth: steps from cell type to go down the hierarchie to retrieve gene sets linked to children (e.g. 2 would be down to grandchildren) 
+        child_depth_dict: you can also set the depth for specific celltype with a dictionary {celltype1:depth1,celltype2:depth2}
         '''
         import itertools
-
+        import warnings
         ## limit to celltype subgraph to retrieve relevant celltypes
 
         node_list_plot = self.celltypes
@@ -120,25 +124,44 @@ class KnowledgeBase:
 
         for x in list(set(celltypes+global_celltypes)):
             if x not in list(view.nodes):
-                raise ValueError('Not all cell types are contained in the Immune Knowledge base')
+                warnings.warn('Not all cell types are contained in the Immune Knowledge base')
+        if get_parents:
+            all_celltypes_parents = {}
+            if parent_depth_dict == None:
+                parent_depth_dict = {}
 
-        all_celltypes_parents = {}
+            for i in celltypes:
+                if i in view.nodes:#is celltype in KnowledgeBase
+                    if i in parent_depth_dict.keys(): #check if query depth was manually defined
+                        if parent_depth_dict[i] == None:
+                            all_celltypes_parents[i]=  [i] 
+                        else:
+                            all_celltypes_parents[i]=  [n for n in nx.traversal.bfs_tree(view, i,depth_limit=parent_depth_dict[i])] 
+                    else:
+                        all_celltypes_parents[i]=  [n for n in nx.traversal.bfs_tree(view, i,depth_limit=parent_depth)] 
+                elif fill_missing: 
+                    all_celltypes_parents[i] = {} #if not add an empty dictionary
+                    print('adding empty dictionary for cell type:',i)
+                else:
+                    all_celltypes_parents[i]=  [i]
+                    print('cell type of interest',i,'is not in the knowledge base')
+        if get_children:
+            all_celltypes_children = {}
+            if child_depth_dict == None:
+                child_depth_dict = {}
 
-        for i in celltypes:
-            if i in view.nodes:
-                all_celltypes_parents[i]=  [n for n in nx.traversal.bfs_tree(view, i)]
-            else:
-                all_celltypes_parents[i]=  [i]
-                print('cell type of interest',i,'is not in the input graph')
-
-        all_celltypes_children = {}
-
-        for i in celltypes:
-            if i in view.nodes:
-                all_celltypes_children[i]=  [n for n in nx.traversal.bfs_tree(view, i,reverse=True)]
-            else:
-                all_celltypes_children[i]=  [i]
-                print('cell type of interest',i,'is not in the input graph')
+            for i in celltypes:
+                if i in view.nodes:
+                    if i in child_depth_dict.keys(): #check if query depth was manually defined
+                        if child_depth_dict[i] ==None:
+                            all_celltypes_children[i]=  [i]
+                        else:
+                            all_celltypes_children[i]=  [n for n in nx.traversal.bfs_tree(view, i,reverse=True,depth_limit=child_depth_dict[i])]
+                    else:
+                        all_celltypes_children[i]=  [n for n in nx.traversal.bfs_tree(view, i,reverse=True,depth_limit=child_depth)]
+                else:
+                    all_celltypes_children[i]=  [i]
+                    print('cell type of interest',i,'is not in the knowledge base')
 
         if get_parents ==True and  get_children==True:
             all_celltypes = list(itertools.chain.from_iterable(list(all_celltypes_children.values())+list(all_celltypes_parents.values())))
@@ -149,12 +172,12 @@ class KnowledgeBase:
         else:
             all_celltypes = []
         all_celltypes = list(set(all_celltypes +  global_celltypes + celltypes))
+        
         #get process genesets connected to these celltypes
         gene_set_edges =self.filter_edges(attribute_name = 'class', attributes = ['process_OF'],target=all_celltypes)  
-        
+
         #dictionary gene set  : cell type
         gene_set_celltype_dict = dict(gene_set_edges)
-
         #dictionary cell type: [gene_set1, gene_set2,...]
         celltype_gene_set_dict = {}
 
@@ -190,14 +213,18 @@ class KnowledgeBase:
         ## merge relevant children and parents into cell type specific keys
 
         process_dict_merged = {}
-
+       
+        
         if get_children:
             for key,value in all_celltypes_children.items():
                 merged_dict = {}
                 for cell_type in value:
                     if cell_type in process_dict.keys():
                         merged_dict = merged_dict | process_dict[cell_type]
-                process_dict_merged[key]=merged_dict 
+                if key in process_dict_merged.keys():
+                    process_dict_merged[key]= process_dict_merged[key] | merged_dict 
+                else:
+                    process_dict_merged[key]=merged_dict 
 
         if get_parents:
             for key,value in all_celltypes_parents.items():
@@ -205,10 +232,17 @@ class KnowledgeBase:
                 for cell_type in value:
                     if cell_type in process_dict.keys():
                         merged_dict = merged_dict | process_dict[cell_type]
-                process_dict_merged[key]=merged_dict 
+                if key in process_dict_merged.keys():
+                    process_dict_merged[key]= process_dict_merged[key] | merged_dict 
+                else:
+                    process_dict_merged[key]=merged_dict 
+                
+        if get_children==False and get_parents==False:
+            process_dict_merged =process_dict 
+                
         process_dict_merged['global'] = process_dict['global']
             
-        ## eck if cell types contain shared children or parents
+        ## check if cell types contain shared children or parents
         import itertools
         from collections import Counter
         if get_children:
@@ -259,6 +293,22 @@ class KnowledgeBase:
         
     def plot_celltypes(self, figure_size = [30,30], node_size = 1000, edge_width= 1, arrow_size=20, 
                        edge_color= 'k', node_color='#8decf5', label_size = 20):
+        ''''
+        plot all celltypes contained in the KnowledgeBase using matplotlib and graphviz
+        self: KnowledgeBase object (networkx)
+        figure_size: figure size
+        node_size: node size in graph
+        edge_with: edge width in graph
+        arrow_size: arrow size of directed edges
+        edge_color: edge color
+        node_color: node color
+        label_size: size of node labels
+        '''
+        try:
+            from networkx.drawing.nx_agraph import graphviz_layout
+        except ModuleNotFoundError:
+            print('please install graphviz')
+            pass
         node_list_plot = self.filter_nodes(attribute_name='class', attributes = ['cell_type'])
 
         def filter_node(n1):
@@ -279,4 +329,43 @@ class KnowledgeBase:
                             min_source_margin=0, min_target_margin=0)
         labels = nx.draw_networkx_labels(view,pos=pos,font_size=label_size)
         print('all celltypes in knowledge base:',list(labels.keys()))
+        
+    def plot_graph_interactive(self, attributes=['cell_type','cellular_process'],colors= ['red','blue'], save_path = 'graph.html'):
+        '''
+        plot excerpt from the KnowledgeBase using the pyvis package
+        self: KnowledgeBase object (networkx)
+        attributes: list of node classes to plot
+        colors: list of colors in the order of the node classes to plot
+        save_path: save path for .html file
+        '''
+        
+        try:
+            from pyvis.network import Network
+        except ModuleNotFoundError:
+            print('please install pyvis')
+            pass          
+        
+        while len(attributes)!=len(colors):
+            print('attributes and colors have to be same length')
+            break
+        while len(set(attributes))!=len(attributes):
+            print('attributes have to be unique')
+            break
+            
+        net = Network(notebook=True)
+        #cell types
+        node_list_plot = self.filter_nodes(attribute_name='class', attributes = attributes)
+        def filter_node(n1):
+                return n1 in node_list_plot
+        view = nx.subgraph_view(self.graph,filter_node=filter_node)
+        net.from_nx(view)
+
+        for i in net.nodes:
+            index_range = list(range(len(attributes)))
+            for v in index_range:
+                             if i['class'] == attributes[v]:
+                               i['color']= colors[v]
+               
+        #show
+        net.show(save_path)
          
