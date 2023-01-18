@@ -1,10 +1,10 @@
 # Cytopus :octopus:
 
-## A language for single cell omics biology
+## Single cell omics biology annotations
 
 ![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
 
-currently version 1.2 (stable)
+currently version 1.21
 
 ## Overview:
 
@@ -17,6 +17,8 @@ The KnowledgeBase can be queried to retrieve gene sets for specific cell types a
 Please cite [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
 ## Installation
+
+While this package is compatible with scanpy workflows, we recommend creating a new conda environment before installation to avoid conflicts with scipy/pandas versions in some scRNAseq workflows. All outputs from this package can easily be stored in .h5ad, .csv or .json files.
 
 install from source:
 
@@ -114,4 +116,4 @@ A full tutorial can be found under https://github.com/wallet-maker/cytopus/blob/
 
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
 
-All submissions will be reviewed by 2 (computational) biologists and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets which pass review and are added to the KnowledgeBase.
+All submissions will be reviewed and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets which pass review and are added to the KnowledgeBase. You can also create entirely new KnowledgeBase objects with this package.
