@@ -201,7 +201,7 @@ class KnowledgeBase:
             global_gs = {}
             for i in global_celltypes:
                 if i in process_dict.keys():
-                    global_gs = global_gs | process_dict[i]
+                    global_gs.update(process_dict[i])
                     del process_dict[i]
                 else:
                     print('did not find',i,'in cell type keys to set as global')
@@ -220,9 +220,9 @@ class KnowledgeBase:
                 merged_dict = {}
                 for cell_type in value:
                     if cell_type in process_dict.keys():
-                        merged_dict = merged_dict | process_dict[cell_type]
+                        merged_dict.update(process_dict[cell_type])
                 if key in process_dict_merged.keys():
-                    process_dict_merged[key]= process_dict_merged[key] | merged_dict 
+                    process_dict_merged[key].update(merged_dict) 
                 else:
                     process_dict_merged[key]=merged_dict 
 
@@ -231,9 +231,9 @@ class KnowledgeBase:
                 merged_dict = {}
                 for cell_type in value:
                     if cell_type in process_dict.keys():
-                        merged_dict = merged_dict | process_dict[cell_type]
+                        merged_dict.update(process_dict[cell_type])
                 if key in process_dict_merged.keys():
-                    process_dict_merged[key]= process_dict_merged[key] | merged_dict 
+                    process_dict_merged[key].update(merged_dict)
                 else:
                     process_dict_merged[key]=merged_dict 
                 
@@ -252,7 +252,7 @@ class KnowledgeBase:
                     shared_children.append(key)
             if shared_children != []:
 
-                print('cell types of interest share the following children:',shared_children,'Generally, this is not desirable.')
+                print('cell types of interest share the following children:',shared_children,'This may be desired.')
         if get_parents:
             shared_parents = []
             for key,value in Counter(list(itertools.chain.from_iterable(list(all_celltypes_parents.values())))).items():
