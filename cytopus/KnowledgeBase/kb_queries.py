@@ -6,8 +6,33 @@ import matplotlib.pyplot as plt
 import pickle
 from os.path import dirname
 
+
+#nested dict with celltype hierarchy
+def extract_hierarchy(G, node='all-cells',invert=False):
+    '''
+    extract cell type hierarchy from KnowledgeBase object as a nested dictionary
+    G: cytopus.kb.KnowledgeBase, with a hierarchy of celltypes
+    node: str, celltype to use as starting points in the hiearchy (e.g. 'all-cells')
+    invert: bool, if False the dict will contain all children below the node, if True the dict will contain all parents above the node
+    '''
+    node_list_plot = G.celltypes
+
+    def filter_node(n1):
+        return n1 in node_list_plot
+
+    view = nx.subgraph_view(G.graph, filter_node=filter_node)
+    if invert:
+        predecessors = view.successors(node)
+    else:
+        predecessors = view.predecessors(node)
+    if not predecessors:
+        return node
+    else:
+        return {s: extract_hierarchy(G, s) for s in predecessors}
+
+
 class KnowledgeBase:
-    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.2.txt'):
+    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.22.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
@@ -54,7 +79,9 @@ class KnowledgeBase:
         if target!=None:
             node_list = [x for x in node_list if x[1] in target]
         return node_list
-
+    
+    
+        
 
     def filter_edges(self,  attributes,attribute_name=None,origin=None,target=None, ):
         '''
@@ -78,7 +105,12 @@ class KnowledgeBase:
         if target!=None:
             edge_list = [x for x in edge_list if x[1] in target]
         return edge_list
-
+    
+    def get_celltype_hierarchy(self, node='all-cells',invert=False):
+        #retrieve hierarchy
+        hierarchy_dict = extract_hierarchy(self, node=node,invert=invert)
+        return hierarchy_dict
+        
     def get_processes(self,gene_sets): 
         '''
         create dictionary gene sets for cellular processes : genes
