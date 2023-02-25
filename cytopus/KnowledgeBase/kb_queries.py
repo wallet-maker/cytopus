@@ -129,7 +129,7 @@ class KnowledgeBase:
                 gene_set_dict[i[0]]= [i[1]]#
         return gene_set_dict
     
-    def get_celltype_processes(self,celltypes,global_celltypes=None,get_parents =True, get_children =True, parent_depth=1, child_depth= None, fill_missing=True,parent_depth_dict=None, child_depth_dict=None, inplace=True):
+    def get_celltype_processes(self,celltypes,global_celltypes=[None],get_parents =True, get_children =True, parent_depth=1, child_depth= None, fill_missing=True,parent_depth_dict=None, child_depth_dict=None, inplace=True):
         '''
         get gene sets for specific cell types
         self: KnowledgeBase object (networkx)
@@ -230,7 +230,7 @@ class KnowledgeBase:
             process_dict[key] = {}
             for gene_set in value:
                 process_dict[key][gene_set] = gene_set_dict[gene_set]
-        if global_celltypes != None:
+        if global_celltypes != [None]:
             global_gs = {}
             for i in global_celltypes:
                 if i in process_dict.keys():
@@ -241,7 +241,7 @@ class KnowledgeBase:
             process_dict['global'] = global_gs
 
         else:
-            print('you have to add a "global" key to run Spectra. E.g. set one key as "global"')
+            print('you must add a "global" key to run Spectra. E.g. set <global_celltypes> to one cell type key to be set as "global"')
 
         ## merge relevant children and parents into cell type specific keys
 
@@ -273,7 +273,8 @@ class KnowledgeBase:
         if get_children==False and get_parents==False:
             process_dict_merged =process_dict 
                 
-        process_dict_merged['global'] = process_dict['global']
+        if global_celltypes != [None]:
+            process_dict_merged['global'] = process_dict['global']
             
         ## check if cell types contain shared children or parents
         import itertools
