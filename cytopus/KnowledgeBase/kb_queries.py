@@ -32,7 +32,7 @@ def extract_hierarchy(G, node='all-cells',invert=False):
 
 
 class KnowledgeBase:
-    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.22.txt'):
+    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.23.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
@@ -129,7 +129,7 @@ class KnowledgeBase:
                 gene_set_dict[i[0]]= [i[1]]#
         return gene_set_dict
     
-    def get_celltype_processes(self,celltypes,global_celltypes=None,get_parents =True, get_children =True, parent_depth=1, child_depth= None, fill_missing=True,parent_depth_dict=None, child_depth_dict=None):
+    def get_celltype_processes(self,celltypes,global_celltypes=None,get_parents =True, get_children =True, parent_depth=1, child_depth= None, fill_missing=True,parent_depth_dict=None, child_depth_dict=None, inplace=True):
         '''
         get gene sets for specific cell types
         self: KnowledgeBase object (networkx)
@@ -142,6 +142,7 @@ class KnowledgeBase:
         parent_depth_dict: you can also set the depth for specific celltype with a dictionary {celltype1:depth1,celltype2:depth2}
         child_depth: steps from cell type to go down the hierarchie to retrieve gene sets linked to children (e.g. 2 would be down to grandchildren) 
         child_depth_dict: you can also set the depth for specific celltype with a dictionary {celltype1:depth1,celltype2:depth2}
+        inplace: bool, if True save output under self.celltype_process_dict
         '''
         import itertools
         import warnings
@@ -292,9 +293,11 @@ class KnowledgeBase:
                     shared_parents.append(key)
             if shared_parents != []:
                 print('cell types of interest share the following parents:',shared_parents,'This may be desired.')
-
-        self.celltype_process_dict = process_dict_merged
-        self.processes = gene_set_dict
+        if inplace:
+            self.celltype_process_dict = process_dict_merged
+            #self.processes = gene_set_dict
+        else:
+            return process_dict_merged
         
     def get_identities(self, celltypes):
         '''
