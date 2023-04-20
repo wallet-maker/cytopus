@@ -50,14 +50,14 @@ pip install pyvis
 
 ### Detailed tutorial for Querying the Knowledge Base:
 Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra]('https://github.com/dpeerlab/spectra') 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
 
 Launch on Google Colaboratory:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/Cytopus_utils_tutorial.ipynb]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/Cytopus_utils_tutorial.ipynb)
 
 ### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
 Launch on Google Colaboratory:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
 
 ### Quick Tutorial for Querying the Knowledge Base:
 
