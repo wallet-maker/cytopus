@@ -64,7 +64,7 @@ def label_marker_genes(marker_genes, gs_label_dict, threshold = 0.4):
     return overlap_df
 
 
- def get_celltype(adata, celltype_key,factor_list=None,Spectra_cell_scores= 'SPECTRA_cell_scores'):
+def get_celltype(adata, celltype_key,factor_list=None,Spectra_cell_scores= 'SPECTRA_cell_scores'):
     '''
     For a list of factors check in which cell types they are expressed
     adata: anndata.AnnData, containing cell type labels in adata.obs[celltype_key]
