@@ -99,7 +99,7 @@ def get_celltype(adata, celltype_key,factor_list=None,Spectra_cell_scores= 'SPEC
 
 def get_gmt(gs_dict,save=False,path=None):
     '''
-    transform a dicionary into a .gmt file
+    transform a dictionary into a .gmt file
     gs_dict: dict, gene set dictionary with format {'gene set name':['Gene_a','Gene_b','Gene_c',...]}
     save: bool, if True saves .gmt file to path
     path: str, path to save .gmt file
