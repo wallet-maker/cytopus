@@ -49,7 +49,7 @@ pip install pyvis
 ## Tutorial
 
 ### Detailed tutorial for Querying the Knowledge Base:
-Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra]('https://github.com/dpeerlab/spectra'):
+Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra](https://github.com/dpeerlab/spectra):
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
 
 ### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
