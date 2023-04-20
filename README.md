@@ -49,10 +49,11 @@ pip install pyvis
 ## Tutorial
 
 ### Detailed tutorial for Querying the Knowledge Base:
-Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra]('https://github.com/dpeerlab/spectra') 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
+Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra]('https://github.com/dpeerlab/spectra'):
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
 
 ### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
+Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
 
 ### Quick Tutorial for Querying the Knowledge Base:
