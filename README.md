@@ -48,6 +48,19 @@ pip install pyvis
 
 ## Tutorial
 
+### Detailed tutorial for Querying the Knowledge Base:
+Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra]('https://github.com/dpeerlab/spectra') 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb]
+
+Launch on Google Colaboratory:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/Cytopus_utils_tutorial.ipynb]
+
+### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
+Launch on Google Colaboratory:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/notebooks/KnowledgeBase_queries_colaboratory.ipynb]
+
+### Quick Tutorial for Querying the Knowledge Base:
+
 Retrieve default KnowledgeBase (human only):
 
 ```
@@ -109,8 +122,6 @@ Fourth, dictionary will be stored in the KnowledgeBase
 ```
 G.celltype_process_dict
 ```
-
-A full tutorial can be found under https://github.com/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries.ipynb
 
 ## you can submit gene sets to be added to the KnowledgeBase here:
 
