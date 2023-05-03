@@ -55,7 +55,10 @@ def label_marker_genes(marker_genes, gs_label_dict, threshold = 0.4):
                 gene_set.remove('nan')
             if 'nan' in marker_set:
                 marker_set.remove('nan')
-            overlap_temp.append(overlap_coefficient(set(gene_set),set(marker_set)))
+            if len(gene_set) > 0 and len(marker_set)>0:
+                overlap_temp.append(overlap_coefficient(set(gene_set),set(marker_set)))
+            else:
+                overlap_temp.append(np.nan)
             gs_names_temp.append(gs_name)
         overlap_df_temp = pd.DataFrame(overlap_temp, columns=[i],index=gs_names_temp).T
         overlap_df = pd.concat([overlap_df,overlap_df_temp])
