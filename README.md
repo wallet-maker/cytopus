@@ -29,12 +29,6 @@ cd cytopus
 pip install .
 ```
 
-dependencies:
-"pandas>1.3"
-"numpy>1.2"
-"networkx>2.7"
-"matplotlib>3.4"
-
 Some plotting functions require pygraphviz or pyvis. Install either or both:
 
 pygraphviz using conda:
