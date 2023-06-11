@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-import networkx as nx
 #from pyvis.network import Network
 import matplotlib.pyplot as plt
 import pickle
 from os.path import dirname
+import networkx as nx
 
 
 #nested dict with celltype hierarchy
@@ -32,15 +32,21 @@ def extract_hierarchy(G, node='all-cells',invert=False):
 
 
 class KnowledgeBase:
-    def __init__(self, graph_path=dirname(__file__)+'/data/Cytopus_1.23.txt'):
+    def __init__(self, graph=dirname(__file__)+'/data/Cytopus_1.23.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
         create dictionary for cellular processes in KnowledgeBase
+        graph: str or networkx.DiGraph, path to pickled networkx.DiGraph object formatted for cytopus or networkx.DiGraph
         '''
         # load KnowledgeBase from pickled file
-        with open(graph_path, 'rb') as f:  # notice the r instead of w
-            self.graph = pickle.load(f) 
+        if isinstance(graph, nx.classes.digraph.DiGraph):
+            self.graph = graph
+        elif isinstance(graph, str):
+            with open(graph, 'rb') as f:  # notice the r instead of w
+                self.graph = pickle.load(f) 
+        else:
+            raise(ValueError('graph must be path (str) or networkx.classes.digraph.DiGraph object'))
         #retrieve all cell types from data
         self.celltypes = self.filter_nodes(attribute_name = 'class',attributes= ['cell_type'],origin=None,target=None)
         
