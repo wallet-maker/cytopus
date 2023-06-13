@@ -306,12 +306,24 @@ class KnowledgeBase:
         else:
             return process_dict_merged
         
-    def get_identities(self, celltypes):
+    def get_identities(self, celltypes_identities,include_subsets=False):
         '''
         self: KnowledgeBase object (networkx)
         celltypes: list of cell types to retrieve identity gene sets for
         '''
-        identity_edges = self.filter_edges( attribute_name ='class', attributes = ['identity_OF'],target=celltypes)
+        if include_subsets:
+            def filter_node(n1):
+                return n1 in self.celltypes
+           
+
+            celltype_view =nx.subgraph_view(self.graph, filter_node=filter_node)
+            celltypes_new = []
+            for i in celltypes_identities:
+                nodes_of_specific_type =  [n for n in nx.traversal.bfs_tree(celltype_view, i,reverse=True)]
+                celltypes_new += nodes_of_specific_type
+            celltypes_identities = list(set(celltypes_new))
+            
+        identity_edges = self.filter_edges( attribute_name ='class', attributes = ['identity_OF'],target=celltypes_identities)
         
         #construct dictionary geneset:gene
         gene_edges = self.filter_edges( attribute_name ='class', attributes = ['gene_OF'])
