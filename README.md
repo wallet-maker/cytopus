@@ -5,7 +5,7 @@
 
 ![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
 
-currently version 1.21
+currently version 1.3
 
 ## Overview:
 
@@ -24,9 +24,7 @@ While this package is compatible with scanpy workflows, we recommend creating a 
 install from source:
 
 ```
-git clone https://github.com/wallet-maker/cytopus.git
-cd cytopus
-pip install .
+pip install git+https://github.com/wallet-maker/cytopus.git
 ```
 
 Some plotting functions require pygraphviz or pyvis. Install either or both:
