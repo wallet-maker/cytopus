@@ -5,7 +5,6 @@
 
 ![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
 
-currently version 1.3
 
 ## Overview:
 
@@ -13,13 +12,11 @@ Package to query our single cell genomics KnowledgeBase.
 
 The KnowledgeBase is provided in graph format based on the networkx package. Central to the KnowledgeBase is a cell type hierarchy and **cellular_processess** which correspond to the cell types in this hierarchy. Cell types are supported by gene sets indicative of their **cellular identities**. Moreover, the KnowledgeBase contains metadata about the gene sets such as author ship, the gene set topic etc.. 
 
-The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the **Spectra** package https://github.com/dpeerlab/spectra: 
+The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the [Spectra](https://github.com/dpeerlab/spectra) package: 
 
 Please cite [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
 ## Installation
-
-While this package is compatible with scanpy workflows, we recommend creating a new conda environment before installation to avoid conflicts with scipy/pandas versions in some scRNAseq workflows. All outputs from this package can easily be stored in .h5ad, .csv or .json files.
 
 install from source:
 
