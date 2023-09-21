@@ -57,7 +57,7 @@ Retrieve default KnowledgeBase (human only):
 import cytopus as cp
 G = cp.kb.KnowledgeBase()
 ```
-Retrieve custom KnowledgeBase (documentation to build KnowledgeBase object coming soon):
+Retrieve custom KnowledgeBase (documentation to build KnowledgeBase object [here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)):
 ```
 file_path = '~/dir1/dir2/knowledgebase_file.txt'
 G = cp.kb.KnowledgeBase(file_path)
