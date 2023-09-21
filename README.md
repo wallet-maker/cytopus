@@ -18,6 +18,12 @@ Please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/38
 
 ## Installation
 
+install from pypi:
+
+'''
+pip install cytopus
+'''
+
 install from source:
 
 ```
