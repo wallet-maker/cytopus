@@ -20,9 +20,9 @@ Please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/38
 
 install from pypi:
 
-'''
+```
 pip install cytopus
-'''
+```
 
 install from source:
 
