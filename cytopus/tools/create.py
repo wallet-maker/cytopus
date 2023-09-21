@@ -27,7 +27,7 @@ def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annot
     celltypes_in_hierarchy = set([x[0] for x in celltypes])
     celltypes_of_genesets = set([x[1] for x in geneset_celltype_edges])
     set_dif = celltypes_of_genesets - celltypes_in_hierarchy
-    if  set_dif != None:
+    if  set_dif != set():
         print('WARNING: missing cell types:',set_dif,'in the cell type hierarchy. Please append cell type hierarchy.')
     else:
         print('all cell types in gene set are contained in the cell type hierarchy')

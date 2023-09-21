@@ -14,7 +14,7 @@ The KnowledgeBase is provided in graph format based on the networkx package. Cen
 
 The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the [Spectra](https://github.com/dpeerlab/spectra) package: 
 
-Please cite [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
+Please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
 
 ## Installation
 
@@ -115,3 +115,16 @@ G.celltype_process_dict
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
 
 All submissions will be reviewed and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets which pass review and are added to the KnowledgeBase. You can also create entirely new KnowledgeBase objects with this package.
+
+## Citation and Usage 
+If you use Cytopus :octopus: or its gene sets you must cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
+
+For gene sets from external sources you must also abide to the licenses of the orignal gene sets which can be retrieved in cytopus as:
+
+```
+import cytopus as cp
+G = cp.kb.KnowledgeBase()
+gene_set_of_interest = 'all_macroautophagy_regulation_positive'
+print(G.graph.nodes[gene_set_of_interest])
+```
+
