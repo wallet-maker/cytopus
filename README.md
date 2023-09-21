@@ -10,11 +10,16 @@
 
 Package to query our single cell genomics KnowledgeBase.
 
+If you use Cytopus :octopus: or its gene sets please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
+
+For details see the [license](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/LICENSE)
+
 The KnowledgeBase is provided in graph format based on the networkx package. Central to the KnowledgeBase is a cell type hierarchy and **cellular_processess** which correspond to the cell types in this hierarchy. Cell types are supported by gene sets indicative of their **cellular identities**. Moreover, the KnowledgeBase contains metadata about the gene sets such as author ship, the gene set topic etc.. 
 
 The KnowledgeBase can be queried to retrieve gene sets for specific cell types and organize them in a dictionary format for downstream use with the [Spectra](https://github.com/dpeerlab/spectra) package: 
 
 Please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
+
 
 ## Installation
 
@@ -44,15 +49,7 @@ pip install pyvis
 
 ## Tutorial
 
-### Detailed tutorial for Querying the Knowledge Base:
-Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra](https://github.com/dpeerlab/spectra):
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
-
-### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
-Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
-
-### Quick Tutorial for Querying the Knowledge Base:
+### Quickstart - Querying the Knowledge Base:
 
 Retrieve default KnowledgeBase (human only):
 
@@ -116,6 +113,19 @@ Fourth, dictionary will be stored in the KnowledgeBase
 G.celltype_process_dict
 ```
 
+### Detailed tutorial for Querying the Knowledge Base:
+Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra](https://github.com/dpeerlab/spectra):
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
+
+### Detailed tutorial for Generating a cytopus Knowledge Base object:
+Learn how to create a Knowledge Base object from gene sets annotations and cell type hierarchies stored in .csv files:
+[here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)
+
+### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
+Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
+
+
 ## you can submit gene sets to be added to the KnowledgeBase here:
 
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
@@ -123,9 +133,8 @@ https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5c
 All submissions will be reviewed and if needed revised before they will be added to the database. This will ensure consistency of the annotations and avoid gene set duplication. Authorship will be acknowledged in the KnowledgeBase for all submitted gene sets which pass review and are added to the KnowledgeBase. You can also create entirely new KnowledgeBase objects with this package.
 
 ## Citation and Usage 
-If you use Cytopus :octopus: or its gene sets you must cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
 
-For gene sets from external sources you must also abide to the licenses of the orignal gene sets which can be retrieved in cytopus as:
+For gene sets from external sources you must also abide to the licenses of the original gene sets. To make this easier we have stored these in the Knowledge Base object:
 
 ```
 import cytopus as cp
