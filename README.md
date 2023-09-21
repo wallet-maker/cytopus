@@ -121,7 +121,7 @@ Learn how to explore the Knowledge Base and retrieve a dicitionary which can be 
 Learn how to create a Knowledge Base object from gene sets annotations and cell type hierarchies stored in .csv files:
 [here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)
 
-### Detailed tutorial for Labeling Factor Analysis Outputs (Spectra):
+### Utils tutorial - Labeling Factor Analysis Outputs (Spectra):
 Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
 
