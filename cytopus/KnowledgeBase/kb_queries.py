@@ -32,7 +32,7 @@ def extract_hierarchy(G, node='all-cells',invert=False):
 
 
 class KnowledgeBase:
-    def __init__(self, graph=dirname(__file__)+'/data/Cytopus_1.23.txt'):
+    def __init__(self, graph=dirname(__file__)+'/data/Cytopus_1.31nc.txt'):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
