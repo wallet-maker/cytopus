@@ -1,8 +1,11 @@
 from setuptools import setup, find_packages
 
+VERSION = '1.3.1.dev1'
+
 setup(
     name='cytopus',
-    version='1.21',
+    version=VERSION,
+    author="Thomas Walle",
     packages=["cytopus"],
     install_requires = [
         #"pandas>1.3",

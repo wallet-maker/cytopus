@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-#from pyvis.network import Network
 import matplotlib.pyplot as plt
 import pickle
 from os.path import dirname
@@ -152,6 +149,8 @@ class KnowledgeBase:
         '''
         import itertools
         import warnings
+        from collections import Counter
+
         ## limit to celltype subgraph to retrieve relevant celltypes
 
         node_list_plot = self.celltypes
@@ -283,8 +282,6 @@ class KnowledgeBase:
             process_dict_merged['global'] = process_dict['global']
             
         ## check if cell types contain shared children or parents
-        import itertools
-        from collections import Counter
         if get_children:
             shared_children = []
             for key,value in Counter(list(itertools.chain.from_iterable(list(all_celltypes_children.values())))).items():
