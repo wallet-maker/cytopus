@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.3.1.dev1'
+VERSION = '1.3.1'
 
 setup(
-    name='cytopus',
+    name='cytopus_test',
     version=VERSION,
     author="Thomas Walle",
     packages=["cytopus"],
@@ -12,5 +12,7 @@ setup(
         #"numpy>1.2",
         "networkx>2.7",
         #"matplotlib>3.4"
-        ]        
+        ],
+    include_package_data=True,
+    package_data={'cytopus': ['data/*.txt']},
 )

@@ -1,4 +1,4 @@
 """A Knowledge Base for Single Cell Biology"""
 
-from . import tools
-from . import KnowledgeBase
+from .tools import *
+from .KnowledgeBase import KnowledgeBase, get_data
