@@ -55,7 +55,7 @@ Retrieve default KnowledgeBase (human only):
 
 ```
 import cytopus as cp
-G = cp.kb.KnowledgeBase()
+G = cp.KnowledgeBase()
 ```
 Retrieve custom KnowledgeBase (documentation to build KnowledgeBase object [here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)):
 ```
@@ -138,7 +138,7 @@ For gene sets from external sources you must also abide to the licenses of the o
 
 ```
 import cytopus as cp
-G = cp.kb.KnowledgeBase()
+G = cp.KnowledgeBase()
 gene_set_of_interest = 'all_macroautophagy_regulation_positive'
 print(G.graph.nodes[gene_set_of_interest])
 ```

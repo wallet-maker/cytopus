@@ -1,11 +1,15 @@
-import pandas as pd
-import numpy as np
-#from pyvis.network import Network
+from os.path import dirname
 import matplotlib.pyplot as plt
 import pickle
-from os.path import dirname
+import pkg_resources
 import networkx as nx
 
+
+def get_data(filename):
+    """
+    Load data from cytopus/data.
+    """
+    return pkg_resources.resource_filename('cytopus', 'data/' + filename)
 
 #nested dict with celltype hierarchy
 def extract_hierarchy(G, node='all-cells',invert=False):
@@ -32,13 +36,17 @@ def extract_hierarchy(G, node='all-cells',invert=False):
 
 
 class KnowledgeBase:
-    def __init__(self, graph=dirname(__file__)+'/data/Cytopus_1.31nc.txt'):
+    def __init__(self, graph=None):
         '''
         load KnowledgeBase from file
         retrieve all cell types in KnowledgeBase
         create dictionary for cellular processes in KnowledgeBase
         graph: str or networkx.DiGraph, path to pickled networkx.DiGraph object formatted for cytopus or networkx.DiGraph
         '''
+        
+        # Initialise default graph data
+        if graph is None:
+            graph = get_data("Cytopus_1.31nc.txt")
         # load KnowledgeBase from pickled file
         if isinstance(graph, nx.classes.digraph.DiGraph):
             self.graph = graph
@@ -152,6 +160,8 @@ class KnowledgeBase:
         '''
         import itertools
         import warnings
+        from collections import Counter
+
         ## limit to celltype subgraph to retrieve relevant celltypes
 
         node_list_plot = self.celltypes
@@ -283,8 +293,6 @@ class KnowledgeBase:
             process_dict_merged['global'] = process_dict['global']
             
         ## check if cell types contain shared children or parents
-        import itertools
-        from collections import Counter
         if get_children:
             shared_children = []
             for key,value in Counter(list(itertools.chain.from_iterable(list(all_celltypes_children.values())))).items():

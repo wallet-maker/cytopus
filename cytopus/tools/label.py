@@ -1,6 +1,5 @@
-import cytopus
+from cytopus.KnowledgeBase import KnowledgeBase
 import pandas as pd
-import numpy as np
 
 def overlap_coefficient(set_a,set_b):
     '''
@@ -26,7 +25,7 @@ def label_marker_genes(marker_genes, gs_label_dict, threshold = 0.4):
     '''
     import numpy as np
 
-    if isinstance(gs_label_dict,cytopus.kb.kb_queries.KnowledgeBase):
+    if isinstance(gs_label_dict,KnowledgeBase):
         #collapse annotation dict
         gs_dict = {}
         key_list = []

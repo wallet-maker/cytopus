@@ -3,3 +3,10 @@
 __pycache__/
 /*-env/
 /env-*/
+/build/
+/*.egg-info/
+*.egg-info/
+*.egg
+
+#Individual files
+pyproject_deprecated.toml

@@ -1,6 +1,5 @@
-import cytopus
-import pandas as pd
-import numpy as np
+from cytopus.KnowledgeBase import KnowledgeBase
+import networkx as nx
 
 def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annotation_dict,metadata_dict=None,save=False, save_path=None):
     '''
@@ -13,8 +12,6 @@ def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annot
     save: bool, if True saves the data to the path provided in save_path
     save_path: str, path to save the data to (.txt file)
     '''
-    import networkx as nx
-    import cytopus as cp
 
     #get genes, genesets, celltypes
     genes = list(set([x[1] for x in geneset_gene_edges]))
@@ -85,5 +82,5 @@ def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annot
             with open(save_path, 'wb') as f:
                 pickle.dump(G, f)
             print('Pickled and saved to:',save_path)
-    return cp.kb.KnowledgeBase(graph=G)
+    return KnowledgeBase(graph=G)
     
