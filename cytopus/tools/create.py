@@ -1,4 +1,3 @@
-from cytopus.KnowledgeBase import KnowledgeBase
 import networkx as nx
 
 def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annotation_dict,metadata_dict=None,save=False, save_path=None):

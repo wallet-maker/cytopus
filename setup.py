@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.3.2'
+VERSION = '1.3.4'
 
 setup(
     name='cytopus',
