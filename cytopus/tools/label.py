@@ -1,5 +1,5 @@
-from cytopus.KnowledgeBase import KnowledgeBase
 import pandas as pd
+import csv
 
 def overlap_coefficient(set_a,set_b):
     '''
@@ -137,5 +137,66 @@ def get_gmt(gs_dict,save=False,path=None):
     else:
         return gs_df
     
-    
+
+def flatten_hierarchical_dict(d, parent_key=None):
+    items = []
+    for k, v in d.items():
+        if parent_key is not None:
+            items.append((parent_key, k))
+        if isinstance(v, dict):
+            items.extend(flatten_hierarchical_dict(v, k))
+    return items
+
+def hierarchy_to_csv(hierarchy,filename='hierarchy.csv',header_name=['Parent','Child']):
+    '''
+    get hierarchy from knowledge base and write to .csv
+    hierarchy : dict, nested dict containing cell type hierarchy e.g. G.get_celltype_hierarchy()
+    filename : str, output file name to write csv to
+    header_name : ls, header name of the csv
+    '''
+    flat_list = flatten_hierarchical_dict(hierarchy)
+    # Write to CSV
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(header_name)
+        for parent, child in flat_list:
+            writer.writerow([parent, child])
+
+def geneset_to_csv(gs_dict, filename='geneset.csv', header_name=['gene_set_name','gene_name']):
+    '''
+    get gene sets from knowledge base and write to .csv
+    gs_dict : dict, gene set dictionary e.g. G.processes
+    header_name : ls, name of header in .csv file
+    filename : str, output file name to write csv to
+    '''
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(header_name)
+        for key, values in gs_dict.items():
+            for value in values:
+                writer.writerow([key, value])
+
+
+import networkx as nx
+import pandas as pd
+
+def metadata_to_csv(graph, file_name, specific_class = False, class_value=None):
+    '''
+    get metadata and write to csv
+    graph : networkx.DiGraph, graph containing nodes with attributes
+    file_name : str, path to write csv to
+    specific_class : str, restrict to nodes with specific 'class' attribute
+    class_value : str, class attribute to restrict to
+    '''
+    # Filter nodes by 'class' attribute value
+    if specific_class:
+        attributes = {node: data for node, data in graph.nodes(data=True) if data.get('class') == class_value}
+    else:
+        attributes = attributes = {node: data for node, data in graph.nodes(data=True)}
+
+    # Create a DataFrame from the filtered dictionary
+    df = pd.DataFrame.from_dict(attributes, orient='index')
+
+    # Saving to CSV
+    df.to_csv(file_name)
 

@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pickle
 import pkg_resources
 import networkx as nx
+import numpy as np
 
 
 def get_data(filename):
@@ -59,11 +60,15 @@ class KnowledgeBase:
         self.celltypes = self.filter_nodes(attribute_name = 'class',attributes= ['cell_type'],origin=None,target=None)
         
         #create gene set : gene dict for all cellular processes
-        self.processes = self.get_processes(gene_sets = list(set([x[0] for x in self.filter_edges(attribute_name = 'class', attributes = ['process_OF'],target=self.celltypes)])))
+        processes = self.get_processes(gene_sets = list(set([x[0] for x in self.filter_edges(attribute_name = 'class', attributes = ['process_OF'],target=self.celltypes)])))
+        processes = {k:[x for x in v if x not in ['nan',np.nan]] for k,v in processes.items()}
+        self.processes = processes 
         #self.processes = #self.filter_nodes(attribute_name = 'class',attributes= ['processes'],origin=None,target=None)
         print(self)
         #create gene set : gene dict for all cellular identities
-        self.identities = self.get_identities(self.filter_nodes(attribute_name = 'class',attributes=['cell_type'],origin=None,target=None))
+        identities = self.get_identities(self.filter_nodes(attribute_name = 'class',attributes=['cell_type'],origin=None,target=None))
+        identities = {k:[x for x in v if x not in ['nan',np.nan]] for k,v in identities.items()}
+        self.identities = identities
         
     
     def __str__(self):
