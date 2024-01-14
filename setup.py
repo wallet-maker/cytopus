@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.3.2'
+VERSION = '1.3.3'
 
 setup(
     name='cytopus',
     version=VERSION,
     author="Thomas Walle",
-    packages=["cytopus"],
+    packages=find_packages(),
     install_requires = [
         #"pandas>1.3",
         #"numpy>1.2",

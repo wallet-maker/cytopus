@@ -1,4 +1,4 @@
-from cytopus.KnowledgeBase import KnowledgeBase
+from cytopus.knowledge_base import KnowledgeBase
 import pandas as pd
 
 def overlap_coefficient(set_a,set_b):
