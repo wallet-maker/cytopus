@@ -60,7 +60,7 @@ G = cp.KnowledgeBase()
 Retrieve custom KnowledgeBase (documentation to build KnowledgeBase object [here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)):
 ```
 file_path = '~/dir1/dir2/knowledgebase_file.txt'
-G = cp.kb.KnowledgeBase(file_path)
+G = cp.KnowledgeBase(file_path)
 ```
 Access data in KnowledgeBase:
 ```

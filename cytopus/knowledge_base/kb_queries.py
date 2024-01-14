@@ -322,6 +322,8 @@ class KnowledgeBase:
         self: KnowledgeBase object (networkx)
         celltypes: list of cell types to retrieve identity gene sets for
         '''
+        if not isinstance(celltypes_identities, list):
+            raise TypeError('celltypes_identities must of be of type: list')
         if include_subsets:
             def filter_node(n1):
                 return n1 in self.celltypes
