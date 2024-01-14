@@ -1,7 +1,9 @@
 from os.path import dirname
 import matplotlib.pyplot as plt
 import pickle
-import pkg_resources
+import importlib.resources
+from pathlib import PosixPath
+import cytopus
 import networkx as nx
 
 
@@ -9,7 +11,7 @@ def get_data(filename):
     """
     Load data from cytopus/data.
     """
-    return pkg_resources.resource_filename('cytopus', 'data/' + filename)
+    return importlib.resources.files(cytopus).joinpath('data', filename)
 
 #nested dict with celltype hierarchy
 def extract_hierarchy(G, node='all-cells',invert=False):
@@ -50,7 +52,7 @@ class KnowledgeBase:
         # load KnowledgeBase from pickled file
         if isinstance(graph, nx.classes.digraph.DiGraph):
             self.graph = graph
-        elif isinstance(graph, str):
+        elif isinstance(graph, str) or isinstance(graph, PosixPath):
             with open(graph, 'rb') as f:  # notice the r instead of w
                 self.graph = pickle.load(f) 
         else:
@@ -258,6 +260,7 @@ class KnowledgeBase:
 
         else:
             print('you must add a "global" key to run Spectra. E.g. set <global_celltypes> to one cell type key to be set as "global"')
+            raise ValueError('you must add a "global" key to run Spectra. E.g. set <global_celltypes> to one cell type key to be set as "global"')
 
         ## merge relevant children and parents into cell type specific keys
 
