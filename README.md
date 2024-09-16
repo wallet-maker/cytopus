@@ -125,8 +125,12 @@ Learn how to create a Knowledge Base object from gene sets annotations and cell 
 Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
 
+### Hierarchy tutorial
+Hierarchically annotate and query cells using AnnData and Cytopus:
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hiearchical_annotation_tutorial.ipynb)
 
-## you can submit gene sets to be added to the KnowledgeBase here:
+## you can
+ submit gene sets to be added to the KnowledgeBase here:
 
 https://docs.google.com/forms/d/e/1FAIpQLSfWU7oTZH8jI7T8vFK0Nqq2rfz6_83aJIVamH5cogZQMlciFQ/viewform?usp=sf_link
 
