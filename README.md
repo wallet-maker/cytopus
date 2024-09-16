@@ -10,7 +10,8 @@
 
 Package to query our single cell genomics KnowledgeBase.
 
-If you use Cytopus :octopus: or its gene sets please cite the original Cytopus publication [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
+If you use Cytopus :octopus: or its gene sets please cite the original Cytopus [publications](https://doi.org/10.1038/s41587-023-01940-3) &
+[![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717). 
 
 For details see the [license](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/LICENSE)
 
