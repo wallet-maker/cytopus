@@ -126,7 +126,7 @@ Learn how to label marker genes from factor analysis, determine factor cell type
 
 ### Hierarchy tutorial
 Hierarchically annotate and query cells using AnnData and Cytopus:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]([https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hiearchical_annotation_tutorial.ipynb](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hierarchical_annotation_tutorial.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hierarchical_annotation_tutorial.ipynb)
 
 ## you can
  submit gene sets to be added to the KnowledgeBase here:
