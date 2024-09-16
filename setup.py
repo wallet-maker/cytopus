@@ -1,12 +1,13 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.3.4'
+VERSION = '2.0'
 
 setup(
     name='cytopus',
     version=VERSION,
     author="Thomas Walle",
-    packages=["cytopus"],
+    packages=find_packages(),
+    #packages=["cytopus"],
     install_requires = [
         #"pandas>1.3",
         #"numpy>1.2",
@@ -14,5 +15,5 @@ setup(
         #"matplotlib>3.4"
         ],
     include_package_data=True,
-    package_data={'cytopus': ['data/*.txt']},
+    package_data={'cytopus': ['data/*.txt','data/*.h5ad']},
 )
