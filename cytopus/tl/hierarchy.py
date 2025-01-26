@@ -211,25 +211,25 @@ class Hierarchy:
         else:
             print('query_node:',query_node,'should be of type',node_type,'stopping...')
     def get_cells_for_cell_type(self, cell_type):
-    """
-    Retrieve all cells assigned to a specific cell type in the hierarchy.
-    cell_type: str, name of the cell type node to query.
-    returns: ls, of cell barcodes assigned to the given cell type.
-    """
-    import networkx as nx
+        """
+        Retrieve all cells assigned to a specific cell type in the hierarchy.
+        cell_type: str, name of the cell type node to query.
+        returns: ls, of cell barcodes assigned to the given cell type.
+        """
+        import networkx as nx
 
-    # Check if the provided node is a valid cell type
-    if cell_type not in self.graph.nodes:
-        raise ValueError(f"Cell type '{cell_type}' does not exist in the hierarchy.")
-    if self.graph.nodes[cell_type]['type'] != 'cell_type':
-        raise ValueError(f"Node '{cell_type}' is not of type 'cell_type'.")
+        # Check if the provided node is a valid cell type
+        if cell_type not in self.graph.nodes:
+            raise ValueError(f"Cell type '{cell_type}' does not exist in the hierarchy.")
+        if self.graph.nodes[cell_type]['type'] != 'cell_type':
+            raise ValueError(f"Node '{cell_type}' is not of type 'cell_type'.")
 
-    # Retrieve all 'cell' nodes connected to the cell type node
-    cell_edges = [
-        edge for edge in self.graph.edges(cell_type)
-        if self.graph.nodes[edge[1]]['type'] == 'cell'
-    ]
-    cells = [edge[1] for edge in cell_edges]
+        # Retrieve all 'cell' nodes connected to the cell type node
+        cell_edges = [
+            edge for edge in self.graph.edges(cell_type)
+            if self.graph.nodes[edge[1]]['type'] == 'cell'
+        ]
+        cells = [edge[1] for edge in cell_edges]
 
-    return cells
+        return cells
         
