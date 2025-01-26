@@ -90,7 +90,12 @@ class Hierarchy:
         all_celltypes = get_nodes_of_type(self.graph, 'cell_type')
         return f"Hierarchy class containing {len(all_celltypes)} cell types:{all_celltypes}"
 
-
+    def identities(self)
+        '''
+        plot cell types contained in hierarchy
+        '''
+        get_nodes_of_type(self.graph, node_type='cell_type')
+        cell_type
     def plot_celltypes(self, node_color='#8decf5', node_size = 1000,edge_width= 1,arrow_size=20 ,edge_color= 'k',label_size = 10, figsize=[30,30]):
         '''
         plot all cell types contained in hierarchy object
@@ -123,13 +128,24 @@ class Hierarchy:
         adata: anndata.AnnData, containing the cell type annotations under adata.obs
         obs_columns: ls, list of columns in adata.obs where the cell type annotations are stored (recommended)
         '''
+        import warnings
         import networkx as nx
         if obs_columns==None:
             adata_sub = adata.obs
         else:
             adata_sub = adata.obs[obs_columns]
-
+        #print Warning if not all celltypes contained in hierarchy
+        adata_celltypes = []
+        if obs_columns !=None:
+            for column in obs_columns:
+                adata_celltypes += list(set(adata_sub.obs[column]))
+        adata_celltypes = set(adata_celltypes)
         celltype_nodes = get_node_labels(self.graph,'cell_type')
+        missing_celltypes = adata_celltypes - set(celltype_nodes)
+        if missing_celltypes:
+        warnings.warn(
+            f"Cell types {list(missing_celltypes)} are not contained in the hierarchy. Skipping..."
+        )
         #loop over celltypes to retrieve cells of each celltype
         used_barcodes = set()
         for i in celltype_nodes:
