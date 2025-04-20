@@ -47,7 +47,7 @@ class KnowledgeBase:
         
         # Initialise default graph data
         if graph is None:
-            graph = get_data("Cytopus_1.31nc.txt")
+            graph = get_data("Cytopus_1.31nc_newcelltypes.txt")
         # load KnowledgeBase from pickled file
         if isinstance(graph, nx.classes.digraph.DiGraph):
             self.graph = graph
