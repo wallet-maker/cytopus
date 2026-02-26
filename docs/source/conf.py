@@ -2,21 +2,34 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+
+# Add the parent directory to the Python path for autodoc
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
 project = 'Cytopus'
 copyright = '2024'
 author = 'Thomas Walle'
 release = '2.0'
+version = '2.0'
+
+# Master document
+master_doc = 'index'
 
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
+    'myst_parser',
 ]
 
 templates_path = ['_templates']
-exclude_patterns = []
+exclude_patterns = ['_build', '.DS_Store']
+
+# Source file suffix
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
