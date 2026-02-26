@@ -1,0 +1,19 @@
+site_name: Cytopus
+site_description: "Cytopus — KnowledgeBase for single-cell omics annotations"
+repo_url: ""
+nav:
+  - Home: index.md
+  - Project Overview: overview.md
+  - Installation: installation.md
+  - Project Structure: project_structure.md
+  - Architecture & Workflow: architecture.md
+  - API & Core Logic: api.md
+  - Configuration & Data: configuration.md
+  - Scripts & Automation: scripts.md
+  - Contributing: contributing.md
+  - Troubleshooting: troubleshooting.md
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - fenced_code

@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; Cytopus 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4f7666b3" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Project Structure" href="project_structure.html" />
+    <link rel="prev" title="Project Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cytopus
+              <img src="_static/cytopus_v1.1_stable_graph.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies-declared-in-repository">Dependencies (declared in repository)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-pypi-as-per-readme">Install from PyPI (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-source-as-per-readme">Install from source (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-locally-from-this-repository">Install locally from this repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-plotting-visualization">Optional plotting / visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verify-installation">Verify installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-and-missing-information">Notes and missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Project Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#top-level-files-and-folders">Top-level files and folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#cytopus-package-contents-code-and-data"><cite>cytopus/</cite> package contents (code and data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#jupyter-notebooks-under-notebooks">Jupyter notebooks (under <cite>notebooks/</cite>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#code-file-counts-from-repository-scan">Code file counts (from repository scan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#purpose-of-key-files">Purpose of key files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#entry-point">Entry point</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture &amp; Internal Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#high-level-components">High-level components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#graph-model-and-semantics">Graph model and semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#typical-execution-flow-example">Typical execution flow (example)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-responsibilities">Module responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#data-flow-summary">Data flow summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-notes">Design notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API &amp; Core Logic Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#package-entry">Package entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#get-data-filename"><cite>get_data(filename)</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#knowledgebase-class-core"><cite>KnowledgeBase</cite> class (core)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-create-construct-kb"><cite>cytopus.tl.create.construct_kb</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-hierarchy-module"><cite>cytopus.tl.hierarchy</cite> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-label-module"><cite>cytopus.tl.label</cite> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#notes-about-api-completeness">Notes about API completeness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#detailed-function-class-reference">Detailed function &amp; class reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#knowledgebase-expanded"><cite>KnowledgeBase</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#constructor">Constructor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#important-methods">Important methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#example-usage">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-create-construct-kb-expanded"><cite>tl.create.construct_kb</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#behavior">Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id1">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-hierarchy-expanded"><cite>tl.hierarchy</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#hierarchy-class"><cite>Hierarchy</cite> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id2">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-label-expanded"><cite>tl.label</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id3">Example usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration &amp; Packaged Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#packaged-data">Packaged data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#environment-variables-or-external-configuration">Environment variables or external configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#how-configuration-impacts-execution">How configuration impacts execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#notes-about-missing-unspecified-information">Notes about missing/unspecified information</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts &amp; Automation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#packaging-install">Packaging / Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#tutorials-notebooks">Tutorials / Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#automation-and-testing">Automation and testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#deployment-readiness">Deployment readiness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#example-manual-verification-steps-derived-from-readme">Example manual verification steps (derived from README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#notes-about-missing-automation">Notes about missing automation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute-not-defined-explicitly-in-repo">How to contribute (not defined explicitly in repo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style-and-standards">Code style and standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tests-and-validation">Tests and validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contact-and-authorship">Contact and authorship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#note-about-missing-information">Note about missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting &amp; FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#common-issues-based-on-repository-content">Common issues (based on repository content)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#debugging-tips">Debugging tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#not-defined-in-repository">Not defined in repository</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cytopus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This page documents installation and setup steps based only on repository contents.</p>
+<section id="system-requirements">
+<h2>System requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Python (no explicit version specified in repository). The package uses <cite>setuptools</cite> and <cite>networkx&gt;2.7</cite> in <cite>setup.py</cite>.</p></li>
+</ul>
+</section>
+<section id="dependencies-declared-in-repository">
+<h2>Dependencies (declared in repository)<a class="headerlink" href="#dependencies-declared-in-repository" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><cite>networkx&gt;2.7</cite> (declared in <cite>setup.py</cite> <cite>install_requires</cite>).</p></li>
+</ul>
+<p>Repository code references additional packages that are required for certain functionality (not listed in <cite>setup.py</cite> but used in code and tutorial notebooks):</p>
+<ul class="simple">
+<li><p><cite>numpy</cite></p></li>
+<li><p><cite>pandas</cite></p></li>
+<li><p><cite>matplotlib</cite></p></li>
+<li><p><cite>anndata</cite></p></li>
+<li><p><cite>pyvis</cite> (optional; used in <cite>kb_queries.plot_graph_interactive</cite>)</p></li>
+<li><p><cite>pygraphviz</cite> (optional; recommended for some plotting; README shows conda install suggestion)</p></li>
+</ul>
+<p>Note: The repository explicitly mentions optional plotting libraries in <cite>README.md</cite> and the code attempts to import <cite>pyvis</cite>/<cite>pygraphviz</cite> where applicable.</p>
+</section>
+<section id="install-from-pypi-as-per-readme">
+<h2>Install from PyPI (as per README)<a class="headerlink" href="#install-from-pypi-as-per-readme" title="Link to this heading"></a></h2>
+<p>The repository README states an installation command for users (this requires the package to be published on PyPI):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cytopus</span>
+</pre></div>
+</div>
+</section>
+<section id="install-from-source-as-per-readme">
+<h2>Install from source (as per README)<a class="headerlink" href="#install-from-source-as-per-readme" title="Link to this heading"></a></h2>
+<p>The README documents installing from the GitHub source:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">wallet</span><span class="o">-</span><span class="n">maker</span><span class="o">/</span><span class="n">cytopus</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</section>
+<section id="install-locally-from-this-repository">
+<h2>Install locally from this repository<a class="headerlink" href="#install-locally-from-this-repository" title="Link to this heading"></a></h2>
+<p>From the repository root run one of the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># editable install (recommended for development)</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+
+<span class="c1"># normal install</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="optional-plotting-visualization">
+<h2>Optional plotting / visualization<a class="headerlink" href="#optional-plotting-visualization" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Install <cite>pygraphviz</cite> via conda (README suggestion):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">channel</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pygraphviz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install <cite>pyvis</cite> via pip for interactive HTML visualizations:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyvis</span>
+<span class="pre">`</span></code></p>
+</section>
+<section id="verify-installation">
+<h2>Verify installation<a class="headerlink" href="#verify-installation" title="Link to this heading"></a></h2>
+<p>A minimal verification in a Python shell (derived from README and code):</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">import</span> <span class="pre">cytopus</span> <span class="pre">as</span> <span class="pre">cp</span>
+<span class="pre">G</span> <span class="pre">=</span> <span class="pre">cp.KnowledgeBase()</span>
+<span class="pre">print(G.celltypes)</span>&#160;&#160; <span class="pre">#</span> <span class="pre">should</span> <span class="pre">list</span> <span class="pre">cell</span> <span class="pre">type</span> <span class="pre">nodes</span>
+<span class="pre">print(list(G.processes.keys())[:5])</span>&#160; <span class="pre">#</span> <span class="pre">show</span> <span class="pre">some</span> <span class="pre">process</span> <span class="pre">gene</span> <span class="pre">set</span> <span class="pre">names</span>
+<span class="pre">`</span></code></p>
+<p>If those calls succeed and do not raise import errors, the core package and the default KnowledgeBase file are available.</p>
+</section>
+<section id="notes-and-missing-information">
+<h2>Notes and missing information<a class="headerlink" href="#notes-and-missing-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The repository does not specify an exact Python version requirement.</p></li>
+<li><p>Not all runtime imports (e.g., <cite>pandas</cite>, <cite>numpy</cite>, <cite>anndata</cite>) are present in <cite>setup.py</cite> <cite>install_requires</cite>; install them as needed for full functionality.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Project Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="project_structure.html" class="btn btn-neutral float-right" title="Project Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

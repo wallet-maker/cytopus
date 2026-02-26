@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture &amp; Internal Workflow &mdash; Cytopus 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4f7666b3" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API &amp; Core Logic Reference" href="api.html" />
+    <link rel="prev" title="Project Structure" href="project_structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cytopus
+              <img src="_static/cytopus_v1.1_stable_graph.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies-declared-in-repository">Dependencies (declared in repository)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-pypi-as-per-readme">Install from PyPI (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-source-as-per-readme">Install from source (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally-from-this-repository">Install locally from this repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#optional-plotting-visualization">Optional plotting / visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#verify-installation">Verify installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#notes-and-missing-information">Notes and missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Project Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#top-level-files-and-folders">Top-level files and folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#cytopus-package-contents-code-and-data"><cite>cytopus/</cite> package contents (code and data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#jupyter-notebooks-under-notebooks">Jupyter notebooks (under <cite>notebooks/</cite>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#code-file-counts-from-repository-scan">Code file counts (from repository scan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#purpose-of-key-files">Purpose of key files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#entry-point">Entry point</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Architecture &amp; Internal Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-components">High-level components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graph-model-and-semantics">Graph model and semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#typical-execution-flow-example">Typical execution flow (example)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-responsibilities">Module responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-flow-summary">Data flow summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-notes">Design notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API &amp; Core Logic Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#package-entry">Package entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#get-data-filename"><cite>get_data(filename)</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#knowledgebase-class-core"><cite>KnowledgeBase</cite> class (core)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-create-construct-kb"><cite>cytopus.tl.create.construct_kb</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-hierarchy-module"><cite>cytopus.tl.hierarchy</cite> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-label-module"><cite>cytopus.tl.label</cite> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#notes-about-api-completeness">Notes about API completeness</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#detailed-function-class-reference">Detailed function &amp; class reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration &amp; Packaged Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#packaged-data">Packaged data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#environment-variables-or-external-configuration">Environment variables or external configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#how-configuration-impacts-execution">How configuration impacts execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#notes-about-missing-unspecified-information">Notes about missing/unspecified information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebook_codes.html">Notebook code extracts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebook_codes.html#id1">Cytopus_utils_tutorial.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebook_codes.html#id2">Utils_tutorial.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebook_codes.html#id3">KnowledgeBase_queries_colaboratory.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebook_codes.html#id4">KnowledgeBase_construct.ipynb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebook_codes.html#id5">Hierarchical_annotation_tutorial.ipynb</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts &amp; Automation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#packaging-install">Packaging / Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#tutorials-notebooks">Tutorials / Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#automation-and-testing">Automation and testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#deployment-readiness">Deployment readiness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#example-manual-verification-steps-derived-from-readme">Example manual verification steps (derived from README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts.html#notes-about-missing-automation">Notes about missing automation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute-not-defined-explicitly-in-repo">How to contribute (not defined explicitly in repo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style-and-standards">Code style and standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tests-and-validation">Tests and validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contact-and-authorship">Contact and authorship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#note-about-missing-information">Note about missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting &amp; FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#common-issues-based-on-repository-content">Common issues (based on repository content)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#debugging-tips">Debugging tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#not-defined-in-repository">Not defined in repository</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cytopus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Architecture &amp; Internal Workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/architecture.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="architecture-internal-workflow">
+<h1>Architecture &amp; Internal Workflow<a class="headerlink" href="#architecture-internal-workflow" title="Link to this heading"></a></h1>
+<p>This section explains how components interact and how data flows through the system (derived strictly from repository code).</p>
+<section id="high-level-components">
+<h2>High-level components<a class="headerlink" href="#high-level-components" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/knowledge_base/kb_queries.py">KnowledgeBase</a> (in <a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/knowledge_base/kb_queries.py">cytopus/knowledge_base/kb_queries.py</a>): central class wrapping a NetworkX DiGraph and exposing query and plotting methods.</p></li>
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/tree/main/cytopus/tl">tl</a> tooling (in <a class="reference external" href="https://github.com/wallet-maker/cytopus/tree/main/cytopus/tl">cytopus/tl/</a>): helper modules to construct KBs, manipulate hierarchies, and label/export gene sets.</p></li>
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/tree/main/cytopus/data">data/</a> files: packaged pickled NetworkX graphs and example <cite>AnnData</cite> dataset used as defaults.</p></li>
+</ul>
+</section>
+<section id="graph-model-and-semantics">
+<h2>Graph model and semantics<a class="headerlink" href="#graph-model-and-semantics" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The KnowledgeBase stores elements in a NetworkX <cite>DiGraph</cite> with typed nodes and typed edges.</p></li>
+<li><p>Node attribute <cite>class</cite> is used to distinguish types such as <cite>‘gene’</cite> and <cite>‘cell_type’</cite>.</p></li>
+<li><p>Edge attribute <cite>class</cite> encodes relationships:
+- <cite>‘gene_OF’</cite> — gene_set -&gt; gene edges
+- <cite>‘process_OF’</cite> — gene_set -&gt; celltype edges for processes
+- <cite>‘identity_OF’</cite> — gene_set -&gt; celltype edges for identities
+- <cite>‘SUBSET_OF’</cite> — child -&gt; parent cell type edges (hierarchy)</p></li>
+</ul>
+<p>These attributes are used by filtering utilities (<cite>filter_nodes</cite>, <cite>filter_edges</cite>) to select nodes/edges for queries.</p>
+</section>
+<section id="typical-execution-flow-example">
+<h2>Typical execution flow (example)<a class="headerlink" href="#typical-execution-flow-example" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>User imports the package and constructs a <cite>KnowledgeBase</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cytopus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cp</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">KnowledgeBase</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ul class="simple">
+<li><p>If <cite>graph</cite> argument is omitted, <cite>KnowledgeBase.__init__</cite> uses <cite>get_data(“Cytopus_1.31nc.txt”)</cite> to obtain the path to the packaged KB and unpickles the NetworkX DiGraph.</p></li>
+<li><p>If a NetworkX DiGraph is passed, it is used directly; if a path string is passed, it is unpickled and used.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><dl class="simple">
+<dt>On initialization, <cite>KnowledgeBase</cite> computes helper properties:</dt><dd><ul class="simple">
+<li><p><cite>self.celltypes</cite> via <cite>filter_nodes(attribute_name=’class’, attributes=[‘cell_type’])</cite>.</p></li>
+<li><p><cite>self.processes</cite> via <cite>get_processes(…)</cite> (maps process gene sets to gene lists) and cleaned of NaN values.</p></li>
+<li><p><cite>self.identities</cite> via <cite>get_identities(…)</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Querying for cell-type-specific gene sets:</p></li>
+</ol>
+<ul class="simple">
+<li><p><cite>get_celltype_processes(celltypes, global_celltypes=[None], get_parents=True, get_children=True, …)</cite>:
+* Builds a <cite>subgraph_view</cite> limited to nodes identified as <cite>cell_type</cite>.
+* Traverses parents (predecessors) and children (successors) using BFS to requested depths.
+* Collects <cite>process_OF</cite> edges linking gene sets to the discovered cell types.
+* Uses <cite>get_processes(…)</cite> to map each gene set to its genes (via <cite>gene_OF</cite> edges).
+* Aggregates results into a nested dict mapping <cite>celltype -&gt; {gene_set_name: [genes]}</cite> and optionally merges global cell types into a <cite>global</cite> key.
+* Stores result under <cite>self.celltype_process_dict</cite> if <cite>inplace=True</cite>.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Constructing a KB from raw edges:</p></li>
+</ol>
+<ul class="simple">
+<li><p><cite>tl.create.construct_kb(celltype_edges, geneset_gene_edges, geneset_celltype_edges, annotation_dict, metadata_dict=None, save=False, save_path=None)</cite>
+* Validates and classifies gene sets into <cite>processes</cite> vs <cite>identities</cite> using <cite>annotation_dict</cite> values (<cite>‘cellular_process’</cite> or <cite>‘cellular_identity’</cite>).
+* Adds node and edge attributes for class semantics.
+* Builds a <cite>networkx.DiGraph</cite>, sets node metadata if provided, optionally pickles the graph, and returns <cite>KnowledgeBase(graph=G)</cite>.</p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p>Hierarchy and annotation of single cells:</p></li>
+</ol>
+<ul class="simple">
+<li><p><cite>tl.hierarchy.Hierarchy</cite> can be built from a nested dictionary representation of the cell-type hierarchy.</p></li>
+<li><p><cite>Hierarchy.add_cells(adata, obs_columns=None)</cite> attaches cell barcodes as nodes with type <cite>‘cell’</cite> and edges to their most granular annotation by reading <cite>adata.obs</cite> fields.</p></li>
+<li><p><cite>Hierarchy.query_ancestors(query_node, adata=None, obs_key=’hierarchical_query’)</cite> retrieves barcodes for a cell type and its subsets and optionally writes assigned labels into <cite>adata.obs</cite>.</p></li>
+</ul>
+</section>
+<section id="module-responsibilities">
+<h2>Module responsibilities<a class="headerlink" href="#module-responsibilities" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/knowledge_base/kb_queries.py">cytopus/knowledge_base/kb_queries.py</a> — loading KB data, filtering utilities, constructing process/identity dictionaries, plotting (matplotlib/pygraphviz/pyvis wrappers), and main <cite>KnowledgeBase</cite> API.</p></li>
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/tl/create.py">cytopus/tl/create.py</a> — graph construction from lists/metadata; returns <cite>KnowledgeBase</cite> instances.</p></li>
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/tl/hierarchy.py">cytopus/tl/hierarchy.py</a> — nested hierarchy &lt;-&gt; graph conversion utilities and the <cite>Hierarchy</cite> class for cell attachments and queries.</p></li>
+<li><p><a class="reference external" href="https://github.com/wallet-maker/cytopus/blob/main/cytopus/tl/label.py">cytopus/tl/label.py</a> — overlap computations and labeling utilities focused on mapping marker gene lists or factor loadings to KB gene sets; also CSV/GMT export helpers.</p></li>
+</ul>
+</section>
+<section id="data-flow-summary">
+<h2>Data flow summary<a class="headerlink" href="#data-flow-summary" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Source of truth: NetworkX DiGraph stored in <cite>self.graph</cite> of <cite>KnowledgeBase</cite>.</p></li>
+<li><p>Derived views/dictionaries: <cite>self.celltypes</cite>, <cite>self.processes</cite>, <cite>self.identities</cite>, <cite>self.celltype_process_dict</cite> (after calling <cite>get_celltype_processes</cite>).</p></li>
+<li><p>External inputs: pickled graph files in <cite>cytopus/data/</cite>, or user-provided graph or raw edges passed into <cite>construct_kb</cite>.</p></li>
+</ul>
+</section>
+<section id="design-notes">
+<h2>Design notes<a class="headerlink" href="#design-notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The code uses node/edge attributes to encode domain semantics rather than separate classes; filtering functions use these attributes to select relevant nodes/edges.</p></li>
+<li><p>Plotting functions are optional and attempt to import optional dependencies, printing user-facing messages if missing.</p></li>
+<li><p>There is no CLI or automated test harness included in the repository.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="project_structure.html" class="btn btn-neutral float-left" title="Project Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API &amp; Core Logic Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

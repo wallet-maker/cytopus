@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scripts &amp; Automation &mdash; Cytopus 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4f7666b3" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="Configuration &amp; Packaged Data" href="configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cytopus
+              <img src="_static/cytopus_v1.1_stable_graph.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies-declared-in-repository">Dependencies (declared in repository)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-pypi-as-per-readme">Install from PyPI (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-source-as-per-readme">Install from source (as per README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-locally-from-this-repository">Install locally from this repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#optional-plotting-visualization">Optional plotting / visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#verify-installation">Verify installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#notes-and-missing-information">Notes and missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Project Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#top-level-files-and-folders">Top-level files and folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#cytopus-package-contents-code-and-data"><cite>cytopus/</cite> package contents (code and data)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#jupyter-notebooks-under-notebooks">Jupyter notebooks (under <cite>notebooks/</cite>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#code-file-counts-from-repository-scan">Code file counts (from repository scan)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#purpose-of-key-files">Purpose of key files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_structure.html#entry-point">Entry point</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture &amp; Internal Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#high-level-components">High-level components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#graph-model-and-semantics">Graph model and semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#typical-execution-flow-example">Typical execution flow (example)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#module-responsibilities">Module responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#data-flow-summary">Data flow summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#design-notes">Design notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API &amp; Core Logic Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#package-entry">Package entry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#get-data-filename"><cite>get_data(filename)</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#knowledgebase-class-core"><cite>KnowledgeBase</cite> class (core)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-create-construct-kb"><cite>cytopus.tl.create.construct_kb</cite></a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-hierarchy-module"><cite>cytopus.tl.hierarchy</cite> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#cytopus-tl-label-module"><cite>cytopus.tl.label</cite> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#notes-about-api-completeness">Notes about API completeness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#detailed-function-class-reference">Detailed function &amp; class reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.html#knowledgebase-expanded"><cite>KnowledgeBase</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#constructor">Constructor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#important-methods">Important methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#example-usage">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-create-construct-kb-expanded"><cite>tl.create.construct_kb</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#behavior">Behavior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id1">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-hierarchy-expanded"><cite>tl.hierarchy</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#hierarchy-class"><cite>Hierarchy</cite> class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id2">Example usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.html#tl-label-expanded"><cite>tl.label</cite> (expanded)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.html#id3">Example usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration &amp; Packaged Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#packaged-data">Packaged data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files">Configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#environment-variables-or-external-configuration">Environment variables or external configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#how-configuration-impacts-execution">How configuration impacts execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#notes-about-missing-unspecified-information">Notes about missing/unspecified information</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scripts &amp; Automation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#packaging-install">Packaging / Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorials-notebooks">Tutorials / Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#automation-and-testing">Automation and testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment-readiness">Deployment readiness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-manual-verification-steps-derived-from-readme">Example manual verification steps (derived from README)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notes-about-missing-automation">Notes about missing automation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute-not-defined-explicitly-in-repo">How to contribute (not defined explicitly in repo)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-style-and-standards">Code style and standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tests-and-validation">Tests and validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contact-and-authorship">Contact and authorship</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#note-about-missing-information">Note about missing information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting &amp; FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#common-issues-based-on-repository-content">Common issues (based on repository content)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#debugging-tips">Debugging tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#not-defined-in-repository">Not defined in repository</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cytopus</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Scripts &amp; Automation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scripts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scripts-automation">
+<h1>Scripts &amp; Automation<a class="headerlink" href="#scripts-automation" title="Link to this heading"></a></h1>
+<p>This repository contains code modules and Jupyter notebooks but does not include automated test scripts, CI/CD configuration, or formal build scripts. This page summarizes relevant items.</p>
+<section id="packaging-install">
+<h2>Packaging / Install<a class="headerlink" href="#packaging-install" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><cite>setup.py</cite> is the packaging entry and defines <cite>install_requires</cite> and <cite>package_data</cite>. Use <cite>pip install .</cite> or <cite>pip install -e .</cite> from the repository root to install the package locally.</p></li>
+</ul>
+</section>
+<section id="tutorials-notebooks">
+<h2>Tutorials / Notebooks<a class="headerlink" href="#tutorials-notebooks" title="Link to this heading"></a></h2>
+<p>Jupyter notebooks are included under <cite>notebooks/</cite> and serve as manual tutorials and interactive examples:</p>
+<ul class="simple">
+<li><p><cite>Cytopus_utils_tutorial.ipynb</cite></p></li>
+<li><p><cite>Hierarchical_annotation_tutorial.ipynb</cite></p></li>
+<li><p><cite>KnowledgeBase_construct.ipynb</cite></p></li>
+<li><p><cite>KnowledgeBase_queries_colaboratory.ipynb</cite></p></li>
+<li><p><cite>Utils_tutorial.ipynb</cite></p></li>
+</ul>
+</section>
+<section id="automation-and-testing">
+<h2>Automation and testing<a class="headerlink" href="#automation-and-testing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>No <cite>tests/</cite> directory or testing harness exists in the repository.</p></li>
+<li><p>No CI/CD configuration files (e.g., GitHub Actions, Travis CI, GitLab CI) are present.</p></li>
+</ul>
+</section>
+<section id="deployment-readiness">
+<h2>Deployment readiness<a class="headerlink" href="#deployment-readiness" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>To publish documentation to Read the Docs or MkDocs, the provided <cite>mkdocs.yml</cite> (created for this documentation) and <cite>docs/</cite> directory are ready for build. The repository itself contains no automated docs build configuration.</p></li>
+</ul>
+</section>
+<section id="example-manual-verification-steps-derived-from-readme">
+<h2>Example manual verification steps (derived from README)<a class="headerlink" href="#example-manual-verification-steps-derived-from-readme" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Install the package locally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run a quick Python verification (in a Python REPL):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cytopus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cp</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">KnowledgeBase</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">celltypes</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">processes</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Optional: open notebooks for guided examples and inspecting <cite>adata_spectra.h5ad</cite>.</p></li>
+</ol>
+</section>
+<section id="notes-about-missing-automation">
+<h2>Notes about missing automation<a class="headerlink" href="#notes-about-missing-automation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The repository does not include scripts to auto-generate documentation, run tests, or perform linting — these would need to be added separately if desired.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration &amp; Packaged Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

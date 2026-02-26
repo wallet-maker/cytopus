@@ -1,0 +1,175 @@
+/* Custom Cytopus documentation styling */
+
+/* Improve the main content font and spacing */
+.rst-content {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Enhance code blocks */
+.rst-content code.literal {
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.rst-content pre {
+    background-color: #f8f8f8;
+    border-left: 4px solid #2980b9;
+    padding: 12px 15px;
+    margin: 15px 0;
+}
+
+/* Improve section headers */
+.rst-content h1 {
+    color: #2c3e50;
+    border-bottom: 3px solid #2980b9;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.rst-content h2 {
+    color: #34495e;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.rst-content h3 {
+    color: #5d6d7b;
+    margin-top: 20px;
+}
+
+/* Enhance lists */
+.rst-content ul, .rst-content ol {
+    margin: 15px 0;
+}
+
+.rst-content li {
+    margin: 8px 0;
+}
+
+/* Style admonitions */
+.admonition {
+    margin: 20px 0;
+    padding: 15px;
+    border-left: 4px solid #f0ad4e;
+    background-color: #fef5e7;
+    border-radius: 0 3px 3px 0;
+}
+
+.admonition.note {
+    border-left-color: #2980b9;
+    background-color: #d6eaf8;
+}
+
+.admonition.warning {
+    border-left-color: #e74c3c;
+    background-color: #fadbd8;
+}
+
+/* Improve the table of contents */
+.toctree-wrapper ul {
+    padding: 0;
+}
+
+.toctree-wrapper > ul > li > a {
+    font-weight: 500;
+    color: #2980b9;
+}
+
+/* Enhance the sidebar navigation */
+.wy-side-nav-search {
+    background-color: #2c3e50;
+    padding: 20px;
+}
+
+.wy-side-nav-search input[type=text] {
+    border-color: #2980b9;
+}
+
+.wy-nav-side {
+    background-color: #ecf0f1;
+}
+
+.wy-menu-vertical a {
+    color: #2c3e50;
+}
+
+.wy-menu-vertical a:hover {
+    color: #2980b9;
+}
+
+.wy-menu-vertical li.current > a {
+    color: #2980b9;
+    border-right: 3px solid #2980b9;
+    background-color: #d6eaf8;
+}
+
+/* Improve overall page layout */
+.wy-nav-content-wrap {
+    background-color: #ffffff;
+}
+
+body.wy-body-for-nav {
+    background-color: #f5f5f5;
+}
+
+/* Improve footer styling */
+.rst-footer-buttons {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.rst-footer-buttons a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.rst-footer-buttons a:hover {
+    color: #1f618d;
+    text-decoration: underline;
+}
+
+/* Make the landing page more visually appealing */
+.rst-content .section > h1:first-child {
+    font-size: 2.5em;
+    color: #1a237e;
+    margin-bottom: 15px;
+}
+
+/* Add spacing around key sections */
+.rst-content > .section {
+    padding: 20px 0;
+}
+
+/* Enhance code highlighting */
+.highlight {
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+/* Improve inline code styling across the site */
+.docutils.literal {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px 5px;
+}
+
+/* Better spacing for definition lists */
+.rst-content dl {
+    margin: 20px 0;
+}
+
+.rst-content dt {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-top: 15px;
+}
+
+.rst-content dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
