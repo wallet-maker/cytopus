@@ -4,6 +4,10 @@ __pycache__/
 /*-env/
 /env-*/
 /build/
+**/_build/
+**/*.html
+**/Spectra_dict.json
+**/lib/
 /*.egg-info/
 *.egg-info/
 *.egg

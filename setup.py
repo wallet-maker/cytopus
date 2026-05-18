@@ -14,6 +14,17 @@ setup(
         "networkx>2.7",
         #"matplotlib>3.4"
         ],
+    extras_require={
+        'docs': [
+            'sphinx',
+            'sphinx-autodoc-typehints',
+            'furo',
+            'sphinx-design',
+            'myst-parser',
+            'nbsphinx',
+            'ipython'
+        ],
+    },
     include_package_data=True,
     package_data={'cytopus': ['data/*.txt','data/*.h5ad']},
 )
