@@ -1,9 +1,10 @@
-# Cytopus [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
+# Cytopus 
+[![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
 
 ## Single cell omics biology annotations
 
-[Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
+!(https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
 
 
 ## Overview:
