@@ -118,7 +118,7 @@ Learn how to explore the Knowledge Base and retrieve a dicitionary which can be 
 
 ### Detailed tutorial for Generating a cytopus Knowledge Base object:
 Learn how to create a Knowledge Base object from gene sets annotations and cell type hierarchies stored in .csv files:
-[here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)
+[here](https://github.com/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_construct.ipynb)
 
 ### Utils tutorial - Labeling Factor Analysis Outputs (Spectra):
 Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
@@ -126,7 +126,7 @@ Learn how to label marker genes from factor analysis, determine factor cell type
 
 ### Hierarchy tutorial
 Hierarchically annotate and query cells using AnnData and Cytopus:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hiearchical_annotation_tutorial.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hierarchical_annotation_tutorial.ipynb)
 
 ## you can
  submit gene sets to be added to the KnowledgeBase here:
