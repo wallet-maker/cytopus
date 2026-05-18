@@ -1,9 +1,9 @@
-# Cytopus :octopus: [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
+# Cytopus [![DOI](https://zenodo.org/badge/389175717.svg)](https://zenodo.org/badge/latestdoi/389175717)
 
 
 ## Single cell omics biology annotations
 
-![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
+[Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
 
 
 ## Overview:
@@ -24,25 +24,27 @@ The KnowledgeBase can be queried to retrieve gene sets for specific cell types a
 
 install from pypi:
 
-```
+```bash
 pip install cytopus
 ```
 
 install from source:
 
-```
+```bash
 pip install git+https://github.com/wallet-maker/cytopus.git
 ```
 
 Some plotting functions require pygraphviz or pyvis. Install either or both:
 
-pygraphviz using conda:
-```
-conda install --channel conda-forge pygraphviz
+pygraphviz using micromamba:
+
+```bash
+micromamba install gcc gxx graphviz pygraphviz
 ```
 
 pyvis using pip
-```
+
+```bash
 pip install pyvis
 ```
 
@@ -52,17 +54,20 @@ pip install pyvis
 
 Retrieve default KnowledgeBase (human only):
 
-```
+```python
 import cytopus as cp
 G = cp.KnowledgeBase()
 ```
+
 Retrieve custom KnowledgeBase (documentation to build KnowledgeBase object [here](https://github.com/wallet-maker/cytopus/blob/Cytopus_1.3/notebooks/KnowledgeBase_construct.ipynb)):
-```
+
+```python
 file_path = '~/dir1/dir2/knowledgebase_file.txt'
 G = cp.KnowledgeBase(file_path)
 ```
+
 Access data in KnowledgeBase:
-```
+```python
 #list of all cell types in KnowledgeBase
 G.celltypes
 #dictionary of all cellular processes in KnowledgeBase as a dictionary {'process_1':['gene_a','gene_e','gene_y',...],'process_2':['gene_b','gene_u',...],...}
@@ -74,7 +79,7 @@ G.graph.nodes['gene_set_name']
 ```
 
 Plot the cell type hierarchy stored in the KnowledgeBase as a directed graph with edges pointing into the direction of the parents:
-```
+```python
 G.plot_celltypes()
 ```
 
@@ -87,12 +92,13 @@ Prepare a nested dictionary assigning cell types to their cellular processes and
 
 First, select the cell types which you want to retrieve gene sets for. 
 These cell types can be selected from the cell type hierarchy (see .plot_celltypes() method above)
-```
+```python
 celltype_of_interest = ['M','T','B','epi']
 ```
 
 Second, select the cell types which you want merge gene sets and set them as global gene sets for the Spectra package. These gene sets should be valid for all cell types in the data. 
-```
+
+```python
 ##e.g. if you are working with different human cells
 global_celltypes = ['all-cells']
 ##e.g. if you are working with human leukocytes
@@ -103,30 +109,19 @@ global_celltypes = ['all-cells','leukocyte','B']
 
 Third retrieve dictionary of format {celltype_a:{process_a:[gene_a,gene_b,...],...},...}.
 Decide whether you want to merge gene sets for all children or all parents (unusual) of the selected cell types.
-```
+
+```python
 G.get_celltype_processes(celltype_of_interest,global_celltypes = global_celltypes,get_children=True,get_parents =False)
 ```
 
 Fourth, dictionary will be stored in the KnowledgeBase
-```
+```python
 G.celltype_process_dict
 ```
 
-### Detailed tutorial for Querying the Knowledge Base:
-Learn how to explore the Knowledge Base and retrieve a dicitionary which can be used for [Spectra](https://github.com/dpeerlab/spectra):
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_queries_colaboratory.ipynb)
+### Detailed tutorials
 
-### Detailed tutorial for Generating a cytopus Knowledge Base object:
-Learn how to create a Knowledge Base object from gene sets annotations and cell type hierarchies stored in .csv files:
-[here](https://github.com/wallet-maker/cytopus/blob/main/notebooks/KnowledgeBase_construct.ipynb)
-
-### Utils tutorial - Labeling Factor Analysis Outputs (Spectra):
-Learn how to label marker genes from factor analysis, determine factor cell type specificity and export the Knowledge Base content as .gmt files for other applications:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Cytopus_utils_tutorial.ipynb)
-
-### Hierarchy tutorial
-Hierarchically annotate and query cells using AnnData and Cytopus:
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wallet-maker/cytopus/blob/main/notebooks/Hierarchical_annotation_tutorial.ipynb)
+Please refer to our [readthedocs](cytopus.readthedocs.io) for more detailed tutorials.
 
 ## you can
  submit gene sets to be added to the KnowledgeBase here:
@@ -139,7 +134,7 @@ All submissions will be reviewed and if needed revised before they will be added
 
 For gene sets from external sources you must also abide to the licenses of the original gene sets. To make this easier we have stored these in the Knowledge Base object:
 
-```
+```python
 import cytopus as cp
 G = cp.KnowledgeBase()
 gene_set_of_interest = 'all_macroautophagy_regulation_positive'
