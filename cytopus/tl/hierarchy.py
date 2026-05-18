@@ -92,7 +92,7 @@ class Hierarchy:
 
     def identities(self):
         '''
-        plot cell types contained in hierarchy
+        print cell types contained in hierarchy
         '''
         print(get_nodes_of_type(self.graph, node_type='cell_type'))
     def plot_celltypes(self, node_color='#8decf5', node_size = 1000,edge_width= 1,arrow_size=20 ,edge_color= 'k',label_size = 10, figsize=[30,30]):
@@ -129,20 +129,17 @@ class Hierarchy:
         '''
         import warnings
         import networkx as nx
-        import pandas as pd
 
         if obs_columns is None:
             adata_sub = adata.obs
         else:
             adata_sub = adata.obs[obs_columns]
 
-        # Get cell type annotations from adata
-        adata_celltypes = []
-        if obs_columns is not None:
-            for column in obs_columns:
-                adata_celltypes += list(set(adata_sub[column]))
-        adata_celltypes = set(adata_celltypes)
-        
+        # Get cell type annotations from adata (covering both obs_columns and full-obs cases)
+        adata_celltypes = set()
+        for column in adata_sub.columns:
+            adata_celltypes.update(adata_sub[column].dropna().unique())
+
         # Retrieve cell type nodes from the hierarchy
         celltype_nodes = get_node_labels(self.graph, 'cell_type')
         missing_celltypes = adata_celltypes - set(celltype_nodes)
@@ -154,32 +151,30 @@ class Hierarchy:
             )
 
         # Loop over cell types and assign cells
-        used_barcodes = set()
         for cell_type in celltype_nodes:
             barcodes = get_indices(adata_sub, cell_type)
             for barcode in barcodes:
-                # Skip if annotation is NaN
-                if pd.isna(cell_type):
-                    continue
                 # Check if the cell is already in the hierarchy
                 if barcode in self.graph:
-                    # Find the current cell type assignments
+                    # Find all current cell type assignments for this cell
                     current_annotations = [
                         edge[0] for edge in self.graph.in_edges(barcode)
                         if self.graph.nodes[edge[0]]['type'] == 'cell_type'
                     ]
 
-                    if current_annotations:
-                        # Compare granularity with the new annotation
-                        current_annotation = current_annotations[0]
+                    skip = False
+                    for current_annotation in current_annotations:
                         if nx.has_path(self.graph, current_annotation, cell_type):
-                            # Current annotation is less granular (downstream), skip
-                            continue
+                            # current_annotation is a descendant (more granular), keep it; skip new one
+                            skip = True
+                            break
                         elif nx.has_path(self.graph, cell_type, current_annotation):
-                            # New annotation is more granular (upstream), update
+                            # new cell_type is a descendant (more granular), replace current
                             self.graph.remove_edge(current_annotation, barcode)
-                    
-                    # If neither path exists, assume unrelated; continue adding the new annotation
+
+                    if skip:
+                        continue
+                    # If no path exists between annotations, assume unrelated; add the new annotation
 
                 # Add the cell to the hierarchy
                 self.graph.add_node(barcode, type='cell')
@@ -223,6 +218,7 @@ class Hierarchy:
         obs_key: str, column label to store trimmed annotations under adata.obs[obs_key]
         returns: dict, containing the barcodes belonging to each coarse label.
         """
+        import warnings
         import networkx as nx
         import anndata
 
@@ -230,6 +226,10 @@ class Hierarchy:
         for label in coarse_labels:
             if label not in self.graph.nodes:
                 raise ValueError(f"Label '{label}' does not exist in the hierarchy.")
+            if self.graph.nodes[label]['type'] != 'cell_type':
+                warnings.warn(
+                    f"Label '{label}' exists in the hierarchy but is not of type 'cell_type'. Skipping..."
+                )
 
         # Create a dictionary to store the trimmed annotations
         trimmed_annotations = {}
@@ -239,7 +239,7 @@ class Hierarchy:
             if self.graph.nodes[label]['type'] == 'cell_type':
                 # Get all granular (upstream) nodes
                 granular_nodes = nx.ancestors(self.graph, label)
-                granular_nodes.add(label)  # Include the label itself)
+                granular_nodes.add(label)  # Include the label itself
                 # Collect all cell nodes under the current coarse label
                 cell_nodes = []
                 for node in granular_nodes:
@@ -255,6 +255,7 @@ class Hierarchy:
                 for i in v:
                     cell_nodes_inv[i] = k
             adata.obs[obs_key] = adata.obs_names.map(cell_nodes_inv)
+        return trimmed_annotations
     
     
     def get_cells_for_cell_type(self, cell_type):
@@ -263,8 +264,6 @@ class Hierarchy:
         cell_type: str, name of the cell type node to query.
         returns: ls, of cell barcodes assigned to the given cell type.
         """
-        import networkx as nx
-
         # Check if the provided node is a valid cell type
         if cell_type not in self.graph.nodes:
             raise ValueError(f"Cell type '{cell_type}' does not exist in the hierarchy.")
