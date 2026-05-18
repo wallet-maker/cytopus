@@ -121,7 +121,7 @@ G.celltype_process_dict
 
 ### Detailed tutorials
 
-Please refer to our [readthedocs](cytopus.readthedocs.io) for more detailed tutorials.
+Please refer to our [readthedocs](https://cytopus.readthedocs.io) for more detailed tutorials.
 
 ## you can
  submit gene sets to be added to the KnowledgeBase here:
