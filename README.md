@@ -1,5 +1,5 @@
-# Cytopus 
-<a href="https://zenodo.org/badge/latestdoi/389175717"><img src="https://zenodo.org/badge/389175717.svg" alt="DOI"></a>
+# Cytopus [![DOI](https://img.shields.io/badge/DOI-Zenodo-blue.svg)](https://zenodo.org/badge/latestdoi/389175717)
+
 ## Single cell omics biology annotations
 
 ![Image of Cytopus](https://github.com/wallet-maker/cytopus/blob/main/img/cytopus_v1.1_stable_graph.png)
