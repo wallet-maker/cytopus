@@ -11,7 +11,7 @@ def construct_kb(celltype_edges, geneset_gene_edges,geneset_celltype_edges,annot
     save: bool, if True saves the data to the path provided in save_path
     save_path: str, path to save the data to (.txt file)
     '''
-
+    import networkx as nx
     #get genes, genesets, celltypes
     genes = list(set([x[1] for x in geneset_gene_edges]))
     genes = [(x,{'class':'gene'}) for x in genes]
