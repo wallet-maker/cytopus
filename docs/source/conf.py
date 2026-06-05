@@ -63,13 +63,9 @@ intersphinx_mapping = {
 }
 
 html_theme = 'furo'  # Modern, responsive theme
-
-html_theme_options = {
-    'light_logo': "../Compocyte.png",
-}
-
 html_static_path = ['_static']
 html_title = 'Cytopus Documentation'
+html_css_files = ['output.css']
 
 # -- Additional HTML context ---
 html_context = {

@@ -6,7 +6,7 @@ __pycache__/
 /build/
 **/_build/
 **/*.html
-**/Spectra_dict.json
+**/Spectra_dict.json    
 **/lib/
 /*.egg-info/
 *.egg-info/
@@ -14,3 +14,4 @@ __pycache__/
 
 #Individual files
 pyproject_deprecated.toml
+.vscode/settings.json
