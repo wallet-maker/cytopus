@@ -1,0 +1,4 @@
+div.nboutput div.output_area {
+    max-height: 24em;
+    overflow-y: auto;
+}
